@@ -1,10 +1,15 @@
-import './App.css';
+import { ChakraProvider } from "@chakra-ui/react";
+import CharList from "../CharList.js/CharList";
+
+import "./App.css";
 
 function App() {
   return (
-    <div className="App">
-      
-    </div>
+    <ChakraProvider>
+      <div className="App">
+        <CharList />
+      </div>
+    </ChakraProvider>
   );
 }
 
