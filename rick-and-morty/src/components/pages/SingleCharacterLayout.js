@@ -22,6 +22,9 @@ const SingleCharacterLayout = () => {
   const [data, setData] = useState(null);
   const [episodeList, setEpisodeList] = useState([]);
 
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(false);
+
   const rickAndMortyService = new RickAndMortyService();
 
   useEffect(() => {
@@ -34,21 +37,24 @@ const SingleCharacterLayout = () => {
 
   const onDataLoaded = (data) => {
     setData(data);
+    setLoading(false);
     updateEpisodes(data.episode);
   };
 
   const updateEpisodes = (episode) => {
-    episode.map((url, i) => {
-      rickAndMortyService.getData(url).then(onEpisodesLoaded);
-    });
+    episode.map((url, i) =>
+      rickAndMortyService.getData(url).then(onEpisodesLoaded).catch(onError)
+    );
   };
 
   const onEpisodesLoaded = (data) => {
     setEpisodeList((episodeList) => [...episodeList, data]);
   };
 
-  const error = false;
-  const loading = false;
+  const onError = () => {
+    setError(true);
+    setLoading(false);
+  };
 
   const errorMessage = error ? <ErrorMessage /> : null;
   const spinner = loading ? <Spinner /> : null;
