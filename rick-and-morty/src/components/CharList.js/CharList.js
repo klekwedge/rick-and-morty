@@ -6,17 +6,17 @@ import { Flex, List, ListItem, Image, Heading, Button } from "@chakra-ui/react";
 
 const CharList = ({onCharSelected}) => {
   const [charList, setCharList] = useState([]);
-  const [page, setPage] = useState(1);
+  const [currentCharPage, setCurrentCharPage] = useState(1);
 
   const rickAndMortyService = new RickAndMortyService();
 
   useEffect(() => {
-    onRequest(page);
-    setPage(() => page + 1);
+    onRequest(currentCharPage);
+    setCurrentCharPage(() => currentCharPage + 1);
   }, []);
 
-  const onRequest = (page) => {
-    rickAndMortyService.getAllCharacters(page).then(onCharListLoaded);
+  const onRequest = (currentCharPage) => {
+    rickAndMortyService.getAllCharacters(currentCharPage).then(onCharListLoaded);
   };
 
   const onCharListLoaded = (newCharList) => {
@@ -56,11 +56,10 @@ const CharList = ({onCharSelected}) => {
         })}
       </List>
       <Button
-        // disabled={newItemLoading}
-        // style={{ display: charEnded ? "none" : "block" }}
+        display={currentCharPage <= 42 ? "block" : "none"}
         onClick={() => {
-          setPage(() => page + 1);
-          onRequest(page);
+          setCurrentCharPage(() => currentCharPage + 1);
+          onRequest(currentCharPage);
         }}
         background="#3C3E44"
         color="white"
