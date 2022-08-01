@@ -1,15 +1,15 @@
 import { useState, useEffect } from "react";
 import { useParams } from "react-router-dom";
-import { List, ListItem, Heading } from "@chakra-ui/react";
+import { Heading } from "@chakra-ui/react";
 import {
   Table,
   Thead,
   Tbody,
-  Tfoot,
+  Flex,
+  Image,
   Tr,
   Th,
   Td,
-  TableCaption,
   TableContainer,
 } from "@chakra-ui/react";
 import ErrorMessage from "../ErrorMessage/ErrorMessage";
@@ -44,7 +44,6 @@ const SingleCharacterLayout = () => {
   };
 
   const onEpisodesLoaded = (data) => {
-    console.log(data);
     setEpisodeList((episodeList) => [...episodeList, data]);
   };
 
@@ -56,61 +55,49 @@ const SingleCharacterLayout = () => {
 
   const content = !(loading || error || !data) ? (
     <div>
-      <img src={data.image} alt={data.name} />
-      <div>
-        <h2>{data.name}</h2>
-        <h3>{data.gender}</h3>
-        <h3>{data.species}</h3>
-        <h3>{data.status}</h3>
-        <h3>{data.location.name}</h3>
-        <Heading as="h3" fontWeight="500" fontSize="20px" mb="10px">
-          {data.origin.name}
-        </Heading>
-        <Heading as="h3" fontWeight="500" fontSize="20px" mb="20px">
-          Episodes: {episodeList.length}
-        </Heading>
+      <Flex gap="40px" mb="20px">
+        <Image
+          src={data.image}
+          alt={data.name}
+          borderRadius="5px"
+          title={data.name}
+        />
+        <Flex flexDirection="column" gap="5px">
+          <h2>Name: {data.name}</h2>
+          <h3>Gender: {data.gender}</h3>
+          <h3>Species: {data.species}</h3>
+          <h3>Status: {data.status}</h3>
+          <h3>Location: {data.location.name}</h3>{" "}
+          <Heading as="h3" fontWeight="500" fontSize="20px" mb="10px">
+            Origin: {data.origin.name}
+          </Heading>
+        </Flex>
+      </Flex>
 
-        <TableContainer border="1px solid black">
-          <Table variant="striped" colorScheme="teal">
-            <Thead>
-              <Tr>
-                <Th> Series name </Th>
-                <Th>Series release date</Th>
-                <Th>Episode</Th>
+      <Heading as="h3" fontWeight="500" fontSize="20px" mb="20px">
+        Episodes: {episodeList.length}
+      </Heading>
+
+      <TableContainer border="1px solid black">
+        <Table variant="striped" colorScheme="teal">
+          <Thead>
+            <Tr>
+              <Th> Series name </Th>
+              <Th>Series release date</Th>
+              <Th>Episode</Th>
+            </Tr>
+          </Thead>
+          <Tbody>
+            {episodeList.map((episodeItem, i) => (
+              <Tr p="5px" key={episodeItem.id} background="#2EC4B6">
+                <Td> {episodeItem.name}</Td>
+                <Td> {episodeItem.air_date}</Td>
+                <Td> {episodeItem.episode}</Td>
               </Tr>
-            </Thead>
-            <Tbody>
-              {episodeList.map((episodeItem, i) => (
-                <Tr p="5px" key={i} background='#2EC4B6'>
-                  <Td> {episodeItem.name}</Td>
-                  <Td> {episodeItem.air_date}</Td>
-                  <Td> {episodeItem.episode}</Td>
-                </Tr>
-              ))}
-            </Tbody>
-            <Tfoot>
-              <Tr>
-                <Th>To convert</Th>
-                <Th>into</Th>
-                <Th isNumeric>multiply by</Th>
-              </Tr>
-            </Tfoot>
-          </Table>
-        </TableContainer>
-        {/* <List display="flex" flexDirection="column">
-          {episodeList.map((episodeItem, i) => (
-            <ListItem
-              key={i}
-              p="5px"
-              color={i % 2 === 0 ? "black" : "white"}
-              background={i % 2 === 0 ? "#CBF3F0" : "#2EC4B6"}
-              border="1px solid black"
-            >
-              {episodeItem.name}
-            </ListItem>
-          ))}
-        </List> */}
-      </div>
+            ))}
+          </Tbody>
+        </Table>
+      </TableContainer>
     </div>
   ) : null;
 

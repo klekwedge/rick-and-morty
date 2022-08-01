@@ -55,12 +55,19 @@ const View = ({ char }) => {
     <Box
       borderRadius="5px"
       position="fixed"
-      background={char ? "#FF9800" : "inherit"}
+      background={char ? "#202329" : "inherit"}
       pb="30px"
+      maxWidth="300px"
     >
-      <Image src={char.image} alt={char.name + " image"} />
+      <Image src={char.image} alt={char.name + " image"} title={char.name} />
       <Box p="10px 20px 0px 20px">
-        <Heading as="h3" fontSize="26px" textAlign="center" mb="10px">
+        <Heading
+          as="h3"
+          fontSize="24px"
+          textAlign="center"
+          mb="15px"
+          color="white"
+        >
           {char.name}
         </Heading>
         <Flex alignItems="center" gap="5px" mb="10px">
@@ -70,7 +77,7 @@ const View = ({ char }) => {
             height="10px"
             borderRadius="50%"
           ></Box>
-          <Heading as="h4" fontSize="18px">
+          <Heading as="h4" fontSize="18px" color="white">
             {char.status} - {char.species}
           </Heading>
         </Flex>
@@ -89,8 +96,15 @@ const View = ({ char }) => {
         <Heading as="h4" fontSize="14px" color="white" mb="20px">
           Episodes: {char.episode.length}
         </Heading>
-        <Heading as="h4" fontSize="16px" color="white" fontWeight='500'>
-          <Link to={`/characters/${char.id}`}>Visit {char.name} page?</Link>
+        <Heading
+          as="h4"
+          fontSize="16px"
+          color="white"
+          fontWeight="500"
+          transition="all 0.4s ease"
+          _hover={{ color: "#FF9800" }}
+        >
+          <Link to={`/characters/${char.id}`}>Visit "{char.name}" page?</Link>
         </Heading>
       </Box>
     </Box>

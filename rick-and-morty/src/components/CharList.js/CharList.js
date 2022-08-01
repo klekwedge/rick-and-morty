@@ -49,11 +49,14 @@ const CharList = ({ onCharSelected }) => {
             color="white"
             flex="1 1 20%"
             pb="15px"
+            overflow="hidden"
             cursor="pointer"
             borderRadius="5px"
             onClick={() => onCharSelected(item.id)}
+            transition="all .3s ease-in-out"
+            _hover={{ transform: "scale(1.05)" }}
           >
-            <Image alt={item.name + " image"} src={item.image} />
+            <Image alt={item.name + " image"} src={item.image}/>
             <Heading as="h2" fontSize="20px" textAlign="center">
               {item.name}
             </Heading>
