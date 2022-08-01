@@ -1,33 +1,40 @@
-import { useState } from "react";
+import { lazy, Suspense } from "react";
+import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
+
 import { ChakraProvider } from "@chakra-ui/react";
 import { Flex } from "@chakra-ui/react";
-import CharList from "../CharList.js/CharList";
-import CharInfo from "../CharInfo.js/CharInfo";
 import AppHeader from "../AppHeader/AppHeader";
 
+const Page404 = lazy(() => import("../pages/Page404"));
+const MainPage = lazy(() => import("../pages/MainPage"));
+const EpisodesPage = lazy(() => import("../pages/EpisodesPage"));
+const LocationPage = lazy(() => import("../pages/LocationsPage"));
+
 function App() {
-  const [selectedChar, setChar] = useState(null);
-
-  const onCharSelected = (id) => {
-    setChar(id);
-  };
-
   return (
-    <ChakraProvider>
-      <Flex
-        flexDirection="column"
-        gap="50px"
-        m="0 auto"
-        p="10px"
-        maxWidth="1100px"
-      >
-        <AppHeader />
-        <Flex as="main" gap="50px">
-          <CharList onCharSelected={onCharSelected}/>
-          <CharInfo charId={selectedChar}/>
+    <Router>
+      <ChakraProvider>
+        <Flex
+          flexDirection="column"
+          gap="50px"
+          m="0 auto"
+          p="10px"
+          maxWidth="1100px"
+        >
+          <AppHeader />
+          <Flex as="main" gap="50px">
+            <Suspense fallback={<span>Loading...</span>}>
+              <Routes>
+                <Route path="/" element={<MainPage />} />
+                <Route path="/locations" element={<LocationPage />} />
+                <Route path="/episodes" element={<EpisodesPage />} />
+                <Route path="*" element={<Page404 />} />
+              </Routes>
+            </Suspense>
+          </Flex>
         </Flex>
-      </Flex>
-    </ChakraProvider>
+      </ChakraProvider>
+    </Router>
   );
 }
 

@@ -69,7 +69,7 @@ const View = ({ char }) => {
     <>
       <Image src={char.image} alt={char.name + " image"} />
       <Box p="10px 20px">
-        <Heading as="h3" textAlign="center" mb="10px">
+        <Heading as="h3" fontSize='26px' textAlign="center" mb="10px">
           {char.name}
         </Heading>
         <Flex alignItems="center" gap="5px" mb="10px">

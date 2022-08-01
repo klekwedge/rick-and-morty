@@ -1,21 +1,49 @@
-import { Flex, List } from "@chakra-ui/react";
+import { Link, NavLink } from "react-router-dom";
+import { Flex, List, Heading } from "@chakra-ui/react";
 
 const AppHeader = () => {
   return (
-    <Flex as="header" display="flex" justifyContent="space-between" p='10px'>
-      <h1>
-        <a href="#">Rick and Morty portal</a>
-      </h1>
+    <Flex
+      as="header"
+      display="flex"
+      alignItems="center"
+      justifyContent="space-between"
+      p="10px"
+    >
+      <Heading as="h1" fontSize="30px">
+        <Link to="/"> Rick and Morty portal</Link>
+      </Heading>
       <Flex as="nav">
-        <List display='flex' gap='10px'>
+        <List display="flex" gap="10px">
           <li>
-            <a href="#">Characters</a>
+            <NavLink
+              to="/"
+              style={({ isActive }) => ({
+                fontWeight: isActive ? "700" : "400",
+              })}
+            >
+              Characters
+            </NavLink>
           </li>
           <li>
-            <a href="#">Locations</a>
+            <NavLink
+              to="/locations"
+              style={({ isActive }) => ({
+                fontWeight: isActive ? "700" : "400",
+              })}
+            >
+              Locations
+            </NavLink>
           </li>
           <li>
-            <a href="#">Episodes</a>
+            <NavLink
+              to="/episodes"
+              style={({ isActive }) => ({
+                fontWeight: isActive ? "700" : "400",
+              })}
+            >
+              Episodes
+            </NavLink>
           </li>
         </List>
       </Flex>

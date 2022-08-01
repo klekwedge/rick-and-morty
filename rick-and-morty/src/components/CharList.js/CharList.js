@@ -11,7 +11,6 @@ const CharList = ({onCharSelected}) => {
   const rickAndMortyService = new RickAndMortyService();
   rickAndMortyService.getAllCharacters();
 
-  console.log("render");
 
   useEffect(() => {
     onRequest(page);
