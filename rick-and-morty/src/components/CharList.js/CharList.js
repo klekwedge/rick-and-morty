@@ -1,14 +1,23 @@
-import { useState, useEffect } from "react";
+import { useState, useEffect, useRef } from "react";
 import { Flex, List, ListItem, Image, Heading, Button } from "@chakra-ui/react";
 import RickAndMortyService from "../../services/RickAndMortyService";
 import Spinner from "../Spinner/Spinner";
 import ErrorMessage from "../ErrorMessage/ErrorMessage";
+import "./CharList.scss";
 
 const CharList = ({ onCharSelected }) => {
   const [charList, setCharList] = useState([]);
   const [currentCharPage, setCurrentCharPage] = useState(1);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
+
+  const charRefs = useRef([]);
+
+  const focusOnItem = (id) => {
+    charRefs.current.forEach((myRef) => myRef.classList.remove("_active"));
+    charRefs.current[id].classList.add("_active");
+    charRefs.current[id].focus();
+  };
 
   const rickAndMortyService = new RickAndMortyService();
 
@@ -40,7 +49,9 @@ const CharList = ({ onCharSelected }) => {
     ? charList.map((item, i) => {
         return (
           <ListItem
+            tabIndex="0"
             key={item.id}
+            ref={(el) => (charRefs.current[i] = el)}
             display="flex"
             flexDirection="column"
             alignItems="center"
@@ -52,11 +63,20 @@ const CharList = ({ onCharSelected }) => {
             overflow="hidden"
             cursor="pointer"
             borderRadius="5px"
-            onClick={() => onCharSelected(item.id)}
+            onClick={() => {
+              focusOnItem(i);
+              onCharSelected(item.id);
+            }}
+            onKeyPress={(e) => {
+              if (e.key === " " || e.key === "Enter") {
+                onCharSelected(item.id);
+                focusOnItem(i);
+              }
+            }}
             transition="all .3s ease-in-out"
             _hover={{ transform: "scale(1.05)" }}
           >
-            <Image alt={item.name + " image"} src={item.image}/>
+            <Image alt={item.name + " image"} src={item.image} />
             <Heading as="h2" fontSize="20px" textAlign="center">
               {item.name}
             </Heading>

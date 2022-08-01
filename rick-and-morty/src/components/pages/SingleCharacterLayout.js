@@ -63,12 +63,14 @@ const SingleCharacterLayout = () => {
           title={data.name}
         />
         <Flex flexDirection="column" gap="5px">
-          <h2>Name: {data.name}</h2>
+          <Heading as="h3" fontWeight="500" fontSize="20px">
+            Name: {data.name}
+          </Heading>
           <h3>Gender: {data.gender}</h3>
           <h3>Species: {data.species}</h3>
           <h3>Status: {data.status}</h3>
           <h3>Location: {data.location.name}</h3>{" "}
-          <Heading as="h3" fontWeight="500" fontSize="20px" mb="10px">
+          <Heading as="h3" fontWeight="400" fontSize="16px" mb="10px">
             Origin: {data.origin.name}
           </Heading>
         </Flex>
