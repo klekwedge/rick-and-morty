@@ -1,7 +1,7 @@
 import { Link, NavLink } from "react-router-dom";
 import { Flex, List, Heading } from "@chakra-ui/react";
 
-const AppHeader = () => {
+const AppHeader = ({match}) => {
   return (
     <Flex
       as="header"
@@ -10,8 +10,10 @@ const AppHeader = () => {
       justifyContent="space-between"
       p="10px"
     >
-      <Heading as="h1" fontSize="30px">
-        <Link to="/"> Rick and Morty portal</Link>
+      <Heading as="h1" fontSize="30px" color="#FF9800">
+        <Link to="/" >
+          Rick and Morty portal
+        </Link>
       </Heading>
       <Flex as="nav">
         <List display="flex" gap="10px">
