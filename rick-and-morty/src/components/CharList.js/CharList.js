@@ -9,8 +9,6 @@ const CharList = ({onCharSelected}) => {
   const [page, setPage] = useState(1);
 
   const rickAndMortyService = new RickAndMortyService();
-  rickAndMortyService.getAllCharacters();
-
 
   useEffect(() => {
     onRequest(page);
