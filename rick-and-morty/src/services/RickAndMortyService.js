@@ -10,7 +10,6 @@ class RickAndMortyService {
   getCharacter = async (charId) => {
     const res = await fetch(`${this._apiBase}/character/${charId}`);
     const data = await res.json();
-    console.log(data);
     return data;
   };
 
@@ -23,9 +22,15 @@ class RickAndMortyService {
   getAllEpisodes = async (page) => {
     const res = await fetch(`${this._apiBase}/episode?page=${page}`);
     const data = await res.json();
-    console.log(data.results);
     return data.results;
   };
+
+  getData = async (url) => {
+    const res = await fetch(url);
+    const data = await res.json();
+    return data;
+  };
+
 }
 
 export default RickAndMortyService;

@@ -10,6 +10,9 @@ const Page404 = lazy(() => import("../pages/Page404"));
 const MainPage = lazy(() => import("../pages/MainPage"));
 const EpisodesPage = lazy(() => import("../pages/EpisodesPage"));
 const LocationPage = lazy(() => import("../pages/LocationsPage"));
+const SingleCharacterLayout = lazy(() =>
+  import("../pages/SingleCharacterLayout")
+);
 
 function App() {
   return (
@@ -29,6 +32,10 @@ function App() {
                 <Route path="/" element={<MainPage />} />
                 <Route path="/locations" element={<LocationPage />} />
                 <Route path="/episodes" element={<EpisodesPage />} />
+                <Route
+                  path="/characters/:id"
+                  element={<SingleCharacterLayout />}
+                />
                 <Route path="*" element={<Page404 />} />
               </Routes>
             </Suspense>

@@ -1,4 +1,5 @@
 import { useEffect, useState } from "react";
+import { Link } from "react-router-dom";
 import { Flex, Skeleton, Heading, Image, Box } from "@chakra-ui/react";
 import RickAndMortyService from "../../services/RickAndMortyService";
 
@@ -30,7 +31,7 @@ const CharInfo = ({ charId }) => {
   );
 
   return (
-    <Flex maxHeight='700px' minWidth="300px" flexDirection="column">
+    <Flex maxHeight="700px" minWidth="300px" flexDirection="column">
       {content}
     </Flex>
   );
@@ -55,9 +56,10 @@ const View = ({ char }) => {
       borderRadius="5px"
       position="fixed"
       background={char ? "#FF9800" : "inherit"}
+      pb="30px"
     >
       <Image src={char.image} alt={char.name + " image"} />
-      <Box p="10px 20px 30px 20px">
+      <Box p="10px 20px 0px 20px">
         <Heading as="h3" fontSize="26px" textAlign="center" mb="10px">
           {char.name}
         </Heading>
@@ -84,8 +86,11 @@ const View = ({ char }) => {
         <Heading as="h4" fontSize="14px" color="white" mb="10px">
           {char.location.name}
         </Heading>
-        <Heading as="h4" fontSize="14px" color="white">
+        <Heading as="h4" fontSize="14px" color="white" mb="20px">
           Episodes: {char.episode.length}
+        </Heading>
+        <Heading as="h4" fontSize="16px" color="white" fontWeight='500'>
+          <Link to={`/characters/${char.id}`}>Visit {char.name} page?</Link>
         </Heading>
       </Box>
     </Box>
