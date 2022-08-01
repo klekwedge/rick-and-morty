@@ -30,13 +30,7 @@ const CharInfo = ({ charId }) => {
   );
 
   return (
-    <Flex
-      minWidth="300px"
-      maxHeight="705px"
-      flexDirection="column"
-      background={char ? "#FF9800" : "inherit"}
-      borderRadius="5px"
-    >
+    <Flex maxHeight='700px' minWidth="300px" flexDirection="column">
       {content}
     </Flex>
   );
@@ -57,9 +51,13 @@ const View = ({ char }) => {
   };
 
   return (
-    <>
+    <Box
+      borderRadius="5px"
+      position="fixed"
+      background={char ? "#FF9800" : "inherit"}
+    >
       <Image src={char.image} alt={char.name + " image"} />
-      <Box p="10px 20px">
+      <Box p="10px 20px 30px 20px">
         <Heading as="h3" fontSize="26px" textAlign="center" mb="10px">
           {char.name}
         </Heading>
@@ -90,7 +88,7 @@ const View = ({ char }) => {
           Episodes: {char.episode.length}
         </Heading>
       </Box>
-    </>
+    </Box>
   );
 };
 
