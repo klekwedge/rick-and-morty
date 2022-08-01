@@ -14,6 +14,10 @@ const SingleCharacterLayout = lazy(() =>
   import("../pages/SingleCharacterLayout")
 );
 
+const SingleLocationLayout = lazy(() =>
+  import("../pages/SingleLocationLayout")
+);
+
 function App() {
   return (
     <Router>
@@ -35,6 +39,10 @@ function App() {
                 <Route
                   path="/characters/:id"
                   element={<SingleCharacterLayout />}
+                />
+                <Route
+                  path="/locations/:id"
+                  element={<SingleLocationLayout />}
                 />
                 <Route path="*" element={<Page404 />} />
               </Routes>

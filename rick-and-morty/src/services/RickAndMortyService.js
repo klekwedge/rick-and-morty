@@ -19,6 +19,12 @@ class RickAndMortyService {
     return data.results;
   };
 
+  getLocation = async (id) => {
+    const res = await fetch(`${this._apiBase}/location/${id}`);
+    const data = await res.json();
+    return data;
+  };
+
   getAllEpisodes = async (page) => {
     const res = await fetch(`${this._apiBase}/episode?page=${page}`);
     const data = await res.json();

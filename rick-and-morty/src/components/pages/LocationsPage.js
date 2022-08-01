@@ -1,5 +1,6 @@
 import { useState, useEffect } from "react";
 import RickAndMortyService from "../../services/RickAndMortyService";
+import { Link } from "react-router-dom";
 import { Flex, List, ListItem, Heading, Button } from "@chakra-ui/react";
 import Spinner from "../Spinner/Spinner";
 import ErrorMessage from "../ErrorMessage/ErrorMessage";
@@ -59,8 +60,19 @@ const LocationPage = () => {
             <Heading as="h2" fontSize="18px" textAlign="center">
               {item.type}
             </Heading>
-            <Heading as="h2" fontSize="18px" textAlign="center">
+            <Heading as="h2" fontSize="18px" textAlign="center" mb='10px'>
               {item.dimension}
+            </Heading>
+
+            <Heading
+              as="h3"
+              fontWeight="400"
+              fontSize="18px"
+              textAlign="center"
+            >
+              <Link to={`/locations/${item.id}`}>
+                Visit "{item.name}" page?
+              </Link>
             </Heading>
           </ListItem>
         );
