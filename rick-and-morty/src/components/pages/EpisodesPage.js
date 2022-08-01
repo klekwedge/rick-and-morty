@@ -1,4 +1,5 @@
 import { useState, useEffect } from "react";
+import { Link } from "react-router-dom";
 import RickAndMortyService from "../../services/RickAndMortyService";
 import { Flex, List, ListItem, Heading, Button } from "@chakra-ui/react";
 import Spinner from "../Spinner/Spinner";
@@ -58,6 +59,9 @@ const EpisodesPage = () => {
             </Heading>
             <Heading as="h2" fontSize="18px" textAlign="center">
               {item.name}
+            </Heading>
+            <Heading as="h2" fontSize="18px" textAlign="center">
+              <Link to={`/episodes/${item.id}`}>Visit "{item.name}" page?</Link>
             </Heading>
           </ListItem>
         );

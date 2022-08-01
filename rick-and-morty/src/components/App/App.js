@@ -18,6 +18,8 @@ const SingleLocationLayout = lazy(() =>
   import("../pages/SingleLocationLayout")
 );
 
+const SingleEpisodeLayout = lazy(() => import("../pages/SingleEpisodeLayout"));
+
 function App() {
   return (
     <Router>
@@ -44,6 +46,7 @@ function App() {
                   path="/locations/:id"
                   element={<SingleLocationLayout />}
                 />
+                <Route path="/episodes/:id" element={<SingleEpisodeLayout />} />
                 <Route path="*" element={<Page404 />} />
               </Routes>
             </Suspense>
