@@ -7,6 +7,7 @@ import {
   Tbody,
   Flex,
   Image,
+  Box,
   Tr,
   Th,
   Td,
@@ -41,13 +42,13 @@ const SingleCharacterLayout = () => {
     updateEpisodes(data.episode);
   };
 
-  const updateEpisodes = (episode) => {
-    episode.map((url, i) =>
-      rickAndMortyService.getData(url).then(onEpisodesLoaded).catch(onError)
+  const updateEpisodes = (episodes) => {
+    episodes.map((url, i) =>
+      rickAndMortyService.getData(url).then(onEpisodeLoaded).catch(onError)
     );
   };
 
-  const onEpisodesLoaded = (data) => {
+  const onEpisodeLoaded = (data) => {
     setEpisodeList((episodeList) => [...episodeList, data]);
   };
 
@@ -60,7 +61,7 @@ const SingleCharacterLayout = () => {
   const spinner = loading ? <Spinner /> : null;
 
   const content = !(loading || error || !data) ? (
-    <div>
+    <Box pb='50px'>
       <Flex gap="40px" mb="20px">
         <Image
           src={data.image}
@@ -106,7 +107,7 @@ const SingleCharacterLayout = () => {
           </Tbody>
         </Table>
       </TableContainer>
-    </div>
+    </Box>
   ) : null;
 
   return (

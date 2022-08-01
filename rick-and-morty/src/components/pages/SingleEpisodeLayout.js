@@ -28,17 +28,16 @@ const SingleEpisodeLayout = () => {
   const onDataLoaded = (data) => {
     setData(data);
     setLoading(false);
-    console.log(data);
-    updateEpisodes(data.characters);
+    updateCharacters(data.characters);
   };
 
-  const updateEpisodes = (episode) => {
-    episode.map((url, i) =>
-      rickAndMortyService.getData(url).then(onEpisodesLoaded).catch(onError)
+  const updateCharacters = (characters) => {
+    characters.map((characterUrl, i) =>
+      rickAndMortyService.getData(characterUrl).then(onCharacterLoaded).catch(onError)
     );
   };
 
-  const onEpisodesLoaded = (data) => {
+  const onCharacterLoaded = (data) => {
     setCharacterList((characterList) => [...characterList, data]);
   };
 
@@ -66,7 +65,7 @@ const SingleEpisodeLayout = () => {
         Characters: {characterList.length}
       </Heading>
 
-      <List display="flex" gap="20px" flexWrap="wrap">
+      <List display="flex" gap="20px" flexWrap="wrap" pb='50px'>
         {characterList.map((item, i) => {
           return (
             <ListItem

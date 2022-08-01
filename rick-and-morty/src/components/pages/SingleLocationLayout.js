@@ -27,17 +27,16 @@ const SingleLocationLayout = () => {
   const onDataLoaded = (data) => {
     setData(data);
     setLoading(false);
-    console.log(data);
     updateResidents(data.residents);
   };
 
-  const updateResidents = (episode) => {
-    episode.map((url, i) =>
-      rickAndMortyService.getData(url).then(onEpisodesLoaded).catch(onError)
+  const updateResidents = (residents) => {
+    residents.map((url, i) =>
+      rickAndMortyService.getData(url).then(onResidentsLoaded).catch(onError)
     );
   };
 
-  const onEpisodesLoaded = (data) => {
+  const onResidentsLoaded = (data) => {
     setResidentList((residentList) => [...residentList, data]);
   };
 
@@ -62,10 +61,10 @@ const SingleLocationLayout = () => {
       </Flex>
 
       <Heading as="h3" fontWeight="500" fontSize="20px" mb="20px">
-        ResidentList: {residentList.length}
+        Residents: {residentList.length}
       </Heading>
 
-      <List display="flex" gap="20px" flexWrap="wrap">
+      <List display="flex" gap="20px" flexWrap="wrap" pb='50px'>
         {residentList.map((residentItem, i) => (
           <ListItem
             tabIndex="0"
