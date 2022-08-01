@@ -1,13 +1,5 @@
 import { useEffect, useState } from "react";
-import {
-  Flex,
-  Skeleton,
-  Heading,
-  Image,
-  Box,
-  List,
-  ListItem,
-} from "@chakra-ui/react";
+import { Flex, Skeleton, Heading, Image, Box } from "@chakra-ui/react";
 import RickAndMortyService from "../../services/RickAndMortyService";
 
 const CharInfo = ({ charId }) => {
@@ -41,9 +33,8 @@ const CharInfo = ({ charId }) => {
     <Flex
       minWidth="300px"
       maxHeight="705px"
-      display="inline-flex"
       flexDirection="column"
-      background="#FF9800"
+      background={char ? "#FF9800" : "inherit"}
       borderRadius="5px"
     >
       {content}
@@ -69,7 +60,7 @@ const View = ({ char }) => {
     <>
       <Image src={char.image} alt={char.name + " image"} />
       <Box p="10px 20px">
-        <Heading as="h3" fontSize='26px' textAlign="center" mb="10px">
+        <Heading as="h3" fontSize="26px" textAlign="center" mb="10px">
           {char.name}
         </Heading>
         <Flex alignItems="center" gap="5px" mb="10px">
@@ -86,13 +77,13 @@ const View = ({ char }) => {
         <Heading as="h4" fontSize="18px" color="white">
           Origin:
         </Heading>
-        <Heading as="h4" fontSize="14px" color="white" mb='10px'>
+        <Heading as="h4" fontSize="14px" color="white" mb="10px">
           {char.origin.name}
         </Heading>
         <Heading as="h4" fontSize="18px" color="white">
           Last known location:
         </Heading>
-        <Heading as="h4" fontSize="14px" color="white" mb='10px'>
+        <Heading as="h4" fontSize="14px" color="white" mb="10px">
           {char.location.name}
         </Heading>
         <Heading as="h4" fontSize="14px" color="white">

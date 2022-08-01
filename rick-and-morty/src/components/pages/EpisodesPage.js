@@ -2,7 +2,7 @@ import { useState, useEffect } from "react";
 import RickAndMortyService from "../../services/RickAndMortyService";
 import { Flex, List, ListItem, Heading, Button } from "@chakra-ui/react";
 
-const EpisodesPage = ({ onCharSelected }) => {
+const EpisodesPage = () => {
   const [charList, setCharList] = useState([]);
   const [currentEpisodePage, setCurrentEpisodePage] = useState(1);
 
@@ -38,7 +38,6 @@ const EpisodesPage = ({ onCharSelected }) => {
               p="15px"
               cursor="pointer"
               borderRadius="5px"
-              onClick={() => onCharSelected(item.id)}
             >
               <Heading as="h2" fontSize="20px" textAlign="center">
                 {item.episode}
@@ -51,10 +50,6 @@ const EpisodesPage = ({ onCharSelected }) => {
         })}
       </List>
       <Button
-        onClick={() => {
-          setCurrentEpisodePage(() => currentEpisodePage + 1);
-          onRequest(currentEpisodePage);
-        }}
         background="#3C3E44"
         color="white"
         maxWidth="200px"

@@ -3,7 +3,6 @@ import RickAndMortyService from "../../services/RickAndMortyService";
 import { Flex, List, ListItem, Image, Heading, Button } from "@chakra-ui/react";
 
 
-
 const CharList = ({onCharSelected}) => {
   const [charList, setCharList] = useState([]);
   const [currentCharPage, setCurrentCharPage] = useState(1);
@@ -20,11 +19,6 @@ const CharList = ({onCharSelected}) => {
   };
 
   const onCharListLoaded = (newCharList) => {
-    // let ended = false;
-
-    // if (newCharList.length < 9) {
-    //   ended = true;
-    // }
     setCharList((charList) => [...charList, ...newCharList]);
   };
 

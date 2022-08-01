@@ -1,8 +1,8 @@
 import { useState, useEffect } from "react";
 import RickAndMortyService from "../../services/RickAndMortyService";
-import { Flex, List, ListItem, Image, Heading, Button } from "@chakra-ui/react";
+import { Flex, List, ListItem, Heading, Button } from "@chakra-ui/react";
 
-const LocationPage = ({ onCharSelected }) => {
+const LocationPage = () => {
   const [charList, setCharList] = useState([]);
   const [currentLocationPage, setCurrentLocationPage] = useState(1);
 
@@ -38,7 +38,6 @@ const LocationPage = ({ onCharSelected }) => {
               p="15px"
               cursor="pointer"
               borderRadius="5px"
-              onClick={() => onCharSelected(item.id)}
             >
               <Heading as="h2" fontSize="20px" textAlign="center">
                 {item.name}

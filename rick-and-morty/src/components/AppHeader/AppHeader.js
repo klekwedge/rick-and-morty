@@ -12,7 +12,7 @@ const AppHeader = ({match}) => {
     >
       <Heading as="h1" fontSize="30px" color="#FF9800">
         <Link to="/" >
-          Rick and Morty portal
+          Rick and Morty Info
         </Link>
       </Heading>
       <Flex as="nav">
