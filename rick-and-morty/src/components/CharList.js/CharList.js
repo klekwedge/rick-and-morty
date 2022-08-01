@@ -1,11 +1,14 @@
 import { useState, useEffect } from "react";
-import RickAndMortyService from "../../services/RickAndMortyService";
 import { Flex, List, ListItem, Image, Heading, Button } from "@chakra-ui/react";
+import RickAndMortyService from "../../services/RickAndMortyService";
+import Spinner from "../Spinner/Spinner";
 
-
-const CharList = ({onCharSelected}) => {
+const CharList = ({ onCharSelected }) => {
   const [charList, setCharList] = useState([]);
   const [currentCharPage, setCurrentCharPage] = useState(1);
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(false);
+
 
   const rickAndMortyService = new RickAndMortyService();
 
@@ -15,16 +18,23 @@ const CharList = ({onCharSelected}) => {
   }, []);
 
   const onRequest = (currentCharPage) => {
-    rickAndMortyService.getAllCharacters(currentCharPage).then(onCharListLoaded);
+    rickAndMortyService
+      .getAllCharacters(currentCharPage)
+      .then(onCharListLoaded);
   };
 
   const onCharListLoaded = (newCharList) => {
+    setLoading(false);
     setCharList((charList) => [...charList, ...newCharList]);
   };
+
+  const spinner = loading ? <Spinner /> : null;
+  // const errorMessage = error ? <ErrorMessage /> : null;
 
   return (
     <Flex alignItems="center" flexDirection="column" gap="20px" pb="50px">
       <List display="flex" gap="20px" flexWrap="wrap">
+        {spinner}
         {charList.map((item, i) => {
           return (
             <ListItem
@@ -37,12 +47,12 @@ const CharList = ({onCharSelected}) => {
               color="white"
               flex="1 1 20%"
               pb="15px"
-              cursor='pointer'
-              borderRadius='5px'
+              cursor="pointer"
+              borderRadius="5px"
               onClick={() => onCharSelected(item.id)}
             >
               <Image alt={item.name + " image"} src={item.image} />
-              <Heading as="h2" fontSize="20px" textAlign='center'>
+              <Heading as="h2" fontSize="20px" textAlign="center">
                 {item.name}
               </Heading>
             </ListItem>

@@ -1,9 +1,10 @@
 import { lazy, Suspense } from "react";
 import { BrowserRouter as Router, Route, Routes } from "react-router-dom";
 
-import { ChakraProvider } from "@chakra-ui/react";
-import { Flex } from "@chakra-ui/react";
+import { ChakraProvider, Flex } from "@chakra-ui/react";
+
 import AppHeader from "../AppHeader/AppHeader";
+import Spinner from "../Spinner/Spinner";
 
 const Page404 = lazy(() => import("../pages/Page404"));
 const MainPage = lazy(() => import("../pages/MainPage"));
@@ -23,7 +24,7 @@ function App() {
         >
           <AppHeader />
           <Flex as="main" gap="50px">
-            <Suspense fallback={<span>Loading...</span>}>
+            <Suspense fallback={<Spinner />}>
               <Routes>
                 <Route path="/" element={<MainPage />} />
                 <Route path="/locations" element={<LocationPage />} />
