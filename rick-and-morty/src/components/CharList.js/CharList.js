@@ -2,7 +2,9 @@ import { useState, useEffect } from "react";
 import RickAndMortyService from "../../services/RickAndMortyService";
 import { Flex, List, ListItem, Image, Heading, Button } from "@chakra-ui/react";
 
-const CharList = () => {
+
+
+const CharList = ({onCharSelected}) => {
   const [charList, setCharList] = useState([]);
   const [page, setPage] = useState(1);
 
@@ -35,7 +37,7 @@ const CharList = () => {
         {charList.map((item, i) => {
           return (
             <ListItem
-              key={Math.random().toString(36).substring(2, 9)}
+              key={item.id}
               display="flex"
               flexDirection="column"
               alignItems="center"
@@ -44,9 +46,12 @@ const CharList = () => {
               color="white"
               flex="1 1 20%"
               pb="15px"
+              cursor='pointer'
+              borderRadius='5px'
+              onClick={() => onCharSelected(item.id)}
             >
               <Image alt={item.name + " image"} src={item.image} />
-              <Heading as="h2" fontSize="25px">
+              <Heading as="h2" fontSize="20px" textAlign='center'>
                 {item.name}
               </Heading>
             </ListItem>
