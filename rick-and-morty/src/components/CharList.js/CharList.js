@@ -1,6 +1,6 @@
 import { useState, useEffect } from "react";
 import RickAndMortyService from "../../services/RickAndMortyService";
-import { List, ListItem, Image } from "@chakra-ui/react";
+import { List, ListItem, Image, Heading } from "@chakra-ui/react";
 
 const CharList = () => {
   const [charList, setCharList] = useState([]);
@@ -35,14 +35,17 @@ const CharList = () => {
             key={Math.random().toString(36).substring(2, 9)}
             display="flex"
             flexDirection="column"
-            alignItems='center'
-            gap='5px'
-            background='#3C3E44'
-            color='white'
-            flex='1 1 20%'
+            alignItems="center"
+            gap="8px"
+            background="#3C3E44"
+            color="white"
+            flex="1 1 20%"
+            pb='15px'
           >
-            <Image alt={item.name + " image"} src={item.image} maxWidth='200px'/>
-            <h2> {item.name}</h2>
+            <Image alt={item.name + " image"} src={item.image} />
+            <Heading as="h2" fontSize="25px">
+              {item.name}
+            </Heading>
           </ListItem>
         );
       })}
