@@ -35,7 +35,7 @@ function App() {
           <Flex as="main" gap="50px">
             <Suspense fallback={<Spinner />}>
               <Routes>
-                <Route path="/" element={<MainPage />} />
+                <Route path="" element={<MainPage />} />
                 <Route path="/locations" element={<LocationPage />} />
                 <Route path="/episodes" element={<EpisodesPage />} />
                 <Route
