@@ -59,7 +59,7 @@ const LocationPage = () => {
             <Heading as="h2" fontSize="18px" textAlign="center">
               {item.type}
             </Heading>
-            <Heading as="h2" fontSize="18px" textAlign="center" mb="10px">
+            <Heading as="h2" fontSize="18px" textAlign="center" mb="5px">
               {item.dimension}
             </Heading>
 
@@ -68,12 +68,10 @@ const LocationPage = () => {
               fontWeight="400"
               fontSize="18px"
               textAlign="center"
-              transition='all 0.3s ease'
+              transition="all 0.3s ease"
               _hover={{ color: "#FF9800" }}
             >
-              <Link to={`/locations/${item.id}`}>
-                Visit "{item.name}" page?
-              </Link>
+              <Link to={`/locations/${item.id}`}>Homepage</Link>
             </Heading>
           </ListItem>
         );

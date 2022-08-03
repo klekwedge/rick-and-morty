@@ -61,12 +61,13 @@ const EpisodesPage = () => {
             </Heading>
             <Heading
               as="h2"
+              fontWeight="400"
               fontSize="18px"
               textAlign="center"
               transition="all 0.3s ease"
               _hover={{ color: "#FF9800" }}
             >
-              <Link to={`/episodes/${item.id}`}>Visit "{item.name}" page?</Link>
+              <Link to={`/episodes/${item.id}`}>Homepage</Link>
             </Heading>
           </ListItem>
         );
