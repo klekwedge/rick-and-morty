@@ -1,6 +1,5 @@
 import { useState } from "react";
-import { Button, Flex } from "@chakra-ui/react";
-import { Tabs, TabList, TabPanels, Tab, TabPanel } from "@chakra-ui/react";
+import { Flex, Tabs, TabList, TabPanels, Tab, TabPanel } from "@chakra-ui/react";
 import CharList from "../CharList.js/CharList";
 import CharInfo from "../CharInfo.js/CharInfo";
 import ErrorFuse from "../ErrorFuse/ErrorFuse";
@@ -11,10 +10,15 @@ function MainPage() {
   const [selectedChar, setChar] = useState(null);
   const [favoriteCharList, setFavoriteCharList] = useState([]);
 
-  const onCharFavorite = (char) => {
-    setFavoriteCharList([...favoriteCharList, char]);
+  const onCharFavorite = (char, option) => {
+    if (option === "add") {
+      setFavoriteCharList([...favoriteCharList, char]);
+    } else {
+      setFavoriteCharList([
+        ...favoriteCharList.filter((charItem) => charItem !== char),
+      ]);
+    }
   };
-
 
   const onCharSelected = (id) => {
     setChar(id);

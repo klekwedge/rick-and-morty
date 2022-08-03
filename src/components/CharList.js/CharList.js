@@ -4,11 +4,9 @@ import RickAndMortyService from "../../services/RickAndMortyService";
 import Spinner from "../Spinner/Spinner";
 import ErrorMessage from "../ErrorMessage/ErrorMessage";
 import LikeButton from "../LikeButton/LikeButton";
-
 import "./CharList.scss";
 
 const CharList = ({ onCharSelected, onCharFavorite }) => {
-
   const [charList, setCharList] = useState([]);
   const [currentCharPage, setCurrentCharPage] = useState(1);
   const [loading, setLoading] = useState(true);
@@ -23,17 +21,17 @@ const CharList = ({ onCharSelected, onCharFavorite }) => {
   };
 
   const addCharToFavorite = (e, item, index, itemId) => {
-    console.log('!');
-    // console.log(e.currentTarget.childNodes[2].childNodes[0].checked);
     if (
       e.target.tagName === "svg" ||
       e.target.tagName === "INPUT" ||
       e.target.tagName === "circle" ||
       e.target.tagName === "path"
     ) {
-      onCharFavorite(item);
+      const option = e.currentTarget.childNodes[2].childNodes[0].checked
+        ? "add"
+        : "delete";
+      onCharFavorite(item, option);
     } else {
-     
       focusOnItem(index);
       onCharSelected(itemId);
     }

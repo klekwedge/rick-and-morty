@@ -36,6 +36,7 @@ const FavoriteCharList = ({ onCharSelected, favoriteCharList }) => {
       favoriteCharList.map((item, i) => {
         return (
           <ListItem
+            className="favoriteChar"
             tabIndex="0"
             key={i}
             ref={(el) => (charRefs.current[i] = el)}
@@ -45,7 +46,7 @@ const FavoriteCharList = ({ onCharSelected, favoriteCharList }) => {
             gap="8px"
             background="#3C3E44"
             color="white"
-            flex="1 1 20%"
+            flex="1 0 20%"
             pb="15px"
             overflow="hidden"
             cursor="pointer"
@@ -77,13 +78,13 @@ const FavoriteCharList = ({ onCharSelected, favoriteCharList }) => {
               _active={{ bacground: "transparent" }}
               _hover={{ bacground: "transparent" }}
             >
-              <LikeButton itemId={item.id} on />
+              <LikeButton itemId={item.id} />
             </Button>
           </ListItem>
         );
       })
     ) : (
-      <Skeleton width="730px" height='200px'></Skeleton>
+      <Skeleton width="730px" height="200px"></Skeleton>
     );
   return (
     <List display="flex" gap="20px" flexWrap="wrap" width="100%">
