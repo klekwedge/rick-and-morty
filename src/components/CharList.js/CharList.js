@@ -3,6 +3,7 @@ import { Flex, List, ListItem, Image, Heading, Button } from "@chakra-ui/react";
 import RickAndMortyService from "../../services/RickAndMortyService";
 import Spinner from "../Spinner/Spinner";
 import ErrorMessage from "../ErrorMessage/ErrorMessage";
+import LikeButton from '../LikeButton/LikeButton';
 import "./CharList.scss";
 
 const CharList = ({ onCharSelected }) => {
@@ -62,6 +63,7 @@ const CharList = ({ onCharSelected }) => {
             pb="15px"
             overflow="hidden"
             cursor="pointer"
+            position='relative'
             borderRadius="5px"
             onClick={() => {
               focusOnItem(i);
@@ -80,6 +82,7 @@ const CharList = ({ onCharSelected }) => {
             <Heading as="h2" fontSize="20px" textAlign="center">
               {item.name}
             </Heading>
+            <LikeButton itemId={item.id}/>
           </ListItem>
         );
       })
