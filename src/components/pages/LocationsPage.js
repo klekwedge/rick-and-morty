@@ -51,7 +51,6 @@ const LocationPage = () => {
             color="white"
             flex="1 1 20%"
             p="15px"
-            cursor="pointer"
             borderRadius="5px"
           >
             <Heading as="h2" fontSize="20px" textAlign="center">
@@ -60,7 +59,7 @@ const LocationPage = () => {
             <Heading as="h2" fontSize="18px" textAlign="center">
               {item.type}
             </Heading>
-            <Heading as="h2" fontSize="18px" textAlign="center" mb='10px'>
+            <Heading as="h2" fontSize="18px" textAlign="center" mb="10px">
               {item.dimension}
             </Heading>
 
@@ -69,6 +68,8 @@ const LocationPage = () => {
               fontWeight="400"
               fontSize="18px"
               textAlign="center"
+              transition='all 0.3s ease'
+              _hover={{ color: "#FF9800" }}
             >
               <Link to={`/locations/${item.id}`}>
                 Visit "{item.name}" page?

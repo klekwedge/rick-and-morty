@@ -37,29 +37,32 @@ function MainPage() {
         <RandomChar />
       </ErrorFuse>
       <Flex gap="50px">
-        <ErrorFuse>
-          <Tabs>
-            <TabList>
-              <Tab>Char list</Tab>
-              <Tab> Favorite char list</Tab>
-            </TabList>
+        <Tabs>
+          <TabList>
+            <Tab>Char list</Tab>
+            <Tab> Favorite char list</Tab>
+          </TabList>
 
-            <TabPanels>
-              <TabPanel>
+          <TabPanels width='100%'>
+            <TabPanel>
+              <ErrorFuse>
                 <CharList
                   onCharSelected={onCharSelected}
                   onCharFavorite={onCharFavorite}
                 />
-              </TabPanel>
-              <TabPanel>
+              </ErrorFuse>
+            </TabPanel>
+            <TabPanel flexGrow="1" width='730px'>
+              <ErrorFuse>
                 <FavoriteCharList
                   onCharSelected={onCharSelected}
                   favoriteCharList={favoriteCharList}
                 />
-              </TabPanel>
-            </TabPanels>
-          </Tabs>
-        </ErrorFuse>
+              </ErrorFuse>
+            </TabPanel>
+          </TabPanels>
+        </Tabs>
+
         <ErrorFuse>
           <CharInfo charItem={selectedChar} />
         </ErrorFuse>

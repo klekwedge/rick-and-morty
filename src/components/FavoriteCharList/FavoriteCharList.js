@@ -14,7 +14,6 @@ const FavoriteCharList = ({ onCharSelected, favoriteCharList }) => {
   let charRefs = useRef([]);
 
   const focusOnItem = (id) => {
-
     charRefs.current.forEach((myRef) => {
       if (myRef) {
         myRef.classList.remove("_active");
@@ -25,7 +24,6 @@ const FavoriteCharList = ({ onCharSelected, favoriteCharList }) => {
   };
 
   const removeCharFromFavorite = (e, index, item) => {
-
     if (
       e.target.tagName === "svg" ||
       e.target.tagName === "INPUT" ||
@@ -46,6 +44,7 @@ const FavoriteCharList = ({ onCharSelected, favoriteCharList }) => {
       favoriteCharList.map((item, i) => {
         return (
           <ListItem
+            maxWidth="160px"
             className="favoriteChar"
             tabIndex="0"
             key={i}
@@ -92,7 +91,7 @@ const FavoriteCharList = ({ onCharSelected, favoriteCharList }) => {
         );
       })
     ) : (
-      <Skeleton width="730px" height="200px"></Skeleton>
+      <Skeleton width="700px" height="200px"></Skeleton>
     );
   return (
     <List display="flex" gap="20px" flexWrap="wrap" width="100%">

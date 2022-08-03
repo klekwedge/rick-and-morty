@@ -2,8 +2,6 @@ import { Link } from "react-router-dom";
 import { Flex, Skeleton, Heading, Image, Box } from "@chakra-ui/react";
 
 const CharInfo = ({ charItem }) => {
-  
-
   const content = charItem ? (
     <View char={charItem} />
   ) : (
@@ -11,7 +9,13 @@ const CharInfo = ({ charItem }) => {
   );
 
   return (
-    <Flex maxHeight="700px" minWidth="300px" flexDirection="column">
+    <Flex
+      pt="60px"
+      maxHeight="700px"
+      minWidth="300px"
+      flexDirection="column"
+      position="relative"
+    >
       {content}
     </Flex>
   );
@@ -34,10 +38,10 @@ const View = ({ char }) => {
   return (
     <Box
       borderRadius="5px"
-      position="fixed"
+      top="50%"
       background={char ? "#202329" : "inherit"}
       pb="30px"
-      maxWidth="300px"
+      maxWidth="250px"
     >
       <Image src={char.image} alt={char.name + " image"} title={char.name} />
       <Box p="10px 20px 0px 20px">

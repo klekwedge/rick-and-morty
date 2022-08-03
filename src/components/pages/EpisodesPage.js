@@ -51,7 +51,6 @@ const EpisodesPage = () => {
             color="white"
             flex="1 1 20%"
             p="15px"
-            cursor="pointer"
             borderRadius="5px"
           >
             <Heading as="h2" fontSize="20px" textAlign="center">
@@ -60,7 +59,13 @@ const EpisodesPage = () => {
             <Heading as="h2" fontSize="18px" textAlign="center">
               {item.name}
             </Heading>
-            <Heading as="h2" fontSize="18px" textAlign="center">
+            <Heading
+              as="h2"
+              fontSize="18px"
+              textAlign="center"
+              transition="all 0.3s ease"
+              _hover={{ color: "#FF9800" }}
+            >
               <Link to={`/episodes/${item.id}`}>Visit "{item.name}" page?</Link>
             </Heading>
           </ListItem>
