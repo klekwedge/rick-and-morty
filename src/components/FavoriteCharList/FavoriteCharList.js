@@ -1,6 +1,5 @@
 import { useState, useEffect, useRef } from "react";
 import {
-  Flex,
   List,
   ListItem,
   Image,
@@ -12,24 +11,35 @@ import LikeButton from "../LikeButton/LikeButton";
 import "./FavoriteCharList.scss";
 
 const FavoriteCharList = ({ onCharSelected, favoriteCharList }) => {
-  const charRefs = useRef([]);
+  let charRefs = useRef([]);
 
   const focusOnItem = (id) => {
-    charRefs.current.forEach((myRef) => myRef.classList.remove("_active"));
+
+    charRefs.current.forEach((myRef) => {
+      if (myRef) {
+        myRef.classList.remove("_active");
+      }
+    });
     charRefs.current[id].classList.add("_active");
     charRefs.current[id].focus();
   };
 
-  // const removeCharFromFavorite = (e) => {
-  //   if (
-  //     e.target.tagName === "svg" ||
-  //     e.target.tagName === "input" ||
-  //     e.target.tagName === "circle" ||
-  //     e.target.tagName === "path"
-  //   ) {
-  //     // context.forceChangeFavoriteList(e.currentTarget);
-  //   }
-  // };
+  const removeCharFromFavorite = (e, index, item) => {
+
+    if (
+      e.target.tagName === "svg" ||
+      e.target.tagName === "INPUT" ||
+      e.target.tagName === "circle" ||
+      e.target.tagName === "path"
+    ) {
+      charRefs.current = charRefs.current.filter(
+        (myRef) => myRef !== charRefs.current[index]
+      );
+    } else {
+      focusOnItem(index);
+      onCharSelected(item);
+    }
+  };
 
   const content =
     favoriteCharList.length > 0 ? (
@@ -53,9 +63,7 @@ const FavoriteCharList = ({ onCharSelected, favoriteCharList }) => {
             position="relative"
             borderRadius="5px"
             onClick={(e) => {
-              focusOnItem(i);
-              onCharSelected(item);
-              // removeCharFromFavorite(e);
+              removeCharFromFavorite(e, i, item);
             }}
             onKeyPress={(e) => {
               if (e.key === " " || e.key === "Enter") {
