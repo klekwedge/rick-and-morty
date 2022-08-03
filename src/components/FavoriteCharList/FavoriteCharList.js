@@ -1,4 +1,4 @@
-import { useState, useEffect, useRef } from "react";
+import { useRef } from "react";
 import {
   List,
   ListItem,
@@ -10,7 +10,7 @@ import {
 import LikeButton from "../LikeButton/LikeButton";
 import "./FavoriteCharList.scss";
 
-const FavoriteCharList = ({ onCharSelected, favoriteCharList }) => {
+const FavoriteCharList = ({ onCharSelected, favoriteCharList, onOpen}) => {
   let charRefs = useRef([]);
 
   const focusOnItem = (id) => {
@@ -36,6 +36,7 @@ const FavoriteCharList = ({ onCharSelected, favoriteCharList }) => {
     } else {
       focusOnItem(index);
       onCharSelected(item);
+      onOpen();
     }
   };
 
@@ -44,7 +45,6 @@ const FavoriteCharList = ({ onCharSelected, favoriteCharList }) => {
       favoriteCharList.map((item, i) => {
         return (
           <ListItem
-            maxWidth="160px"
             className="favoriteChar"
             tabIndex="0"
             key={i}

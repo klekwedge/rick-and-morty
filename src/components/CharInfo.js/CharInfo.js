@@ -1,23 +1,34 @@
 import { Link } from "react-router-dom";
-import { Flex, Skeleton, Heading, Image, Box } from "@chakra-ui/react";
+import { Flex, Heading, Image, Box } from "@chakra-ui/react";
+import {
+  Modal,
+  ModalOverlay,
+  ModalContent,
+  ModalHeader,
+  ModalFooter,
+  ModalBody,
+  ModalCloseButton,
+  Button,
+} from "@chakra-ui/react";
 
-const CharInfo = ({ charItem }) => {
-  const content = charItem ? (
-    <View char={charItem} />
-  ) : (
-    <Skeleton width="100%" height="100%" />
-  );
-
+const CharInfo = ({ charItem, isOpen, onClose }) => {
   return (
-    <Flex
-      pt="60px"
-      maxHeight="700px"
-      minWidth="300px"
-      flexDirection="column"
-      position="relative"
-    >
-      {content}
-    </Flex>
+    <Modal isOpen={isOpen} onClose={onClose}>
+      <ModalOverlay />
+      <ModalContent borderRadius="5px" background="#202329" maxWidth="400px">
+        <ModalHeader color="white">Character info</ModalHeader>
+        <ModalCloseButton color="white" size="lg" />
+        <ModalBody>
+          <View char={charItem} />
+        </ModalBody>
+
+        <ModalFooter>
+          <Button colorScheme="blue" mr={3} onClick={onClose}>
+            Close
+          </Button>
+        </ModalFooter>
+      </ModalContent>
+    </Modal>
   );
 };
 
@@ -36,13 +47,7 @@ const View = ({ char }) => {
   };
 
   return (
-    <Box
-      borderRadius="5px"
-      top="50%"
-      background={char ? "#202329" : "inherit"}
-      pb="30px"
-      maxWidth="250px"
-    >
+    <Flex flexDirection="column">
       <Image src={char.image} alt={char.name + " image"} title={char.name} />
       <Box p="10px 20px 0px 20px">
         <Heading
@@ -91,7 +96,7 @@ const View = ({ char }) => {
           <Link to={`/characters/${char.id}`}>Visit "{char.name}" page?</Link>
         </Heading>
       </Box>
-    </Box>
+    </Flex>
   );
 };
 

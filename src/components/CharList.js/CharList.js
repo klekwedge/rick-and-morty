@@ -6,7 +6,8 @@ import ErrorMessage from "../ErrorMessage/ErrorMessage";
 import LikeButton from "../LikeButton/LikeButton";
 import "./CharList.scss";
 
-const CharList = ({ onCharSelected, onCharFavorite }) => {
+
+const CharList = ({ onCharSelected, onCharFavorite, onOpen}) => {
   const [charList, setCharList] = useState([]);
   const [currentCharPage, setCurrentCharPage] = useState(1);
   const [loading, setLoading] = useState(true);
@@ -33,8 +34,8 @@ const CharList = ({ onCharSelected, onCharFavorite }) => {
       onCharFavorite(item, option);
     } else {
       focusOnItem(index);
-
       onCharSelected(item);
+      onOpen();
     }
   };
 

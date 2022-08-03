@@ -6,6 +6,7 @@ import {
   TabPanels,
   Tab,
   TabPanel,
+  useDisclosure,
 } from "@chakra-ui/react";
 import CharList from "../CharList.js/CharList";
 import CharInfo from "../CharInfo.js/CharInfo";
@@ -16,6 +17,7 @@ import FavoriteCharList from "../FavoriteCharList/FavoriteCharList";
 function MainPage() {
   const [selectedChar, setSelectedChar] = useState(null);
   const [favoriteCharList, setFavoriteCharList] = useState([]);
+  const { isOpen, onOpen, onClose } = useDisclosure();
 
   const onCharFavorite = (char, option) => {
     if (option === "add") {
@@ -43,20 +45,22 @@ function MainPage() {
             <Tab> Favorite char list</Tab>
           </TabList>
 
-          <TabPanels width='100%'>
+          <TabPanels width="100%">
             <TabPanel>
               <ErrorFuse>
                 <CharList
                   onCharSelected={onCharSelected}
                   onCharFavorite={onCharFavorite}
+                  onOpen={onOpen}
                 />
               </ErrorFuse>
             </TabPanel>
-            <TabPanel flexGrow="1" width='730px'>
+            <TabPanel flexGrow="1">
               <ErrorFuse>
                 <FavoriteCharList
                   onCharSelected={onCharSelected}
                   favoriteCharList={favoriteCharList}
+                  onOpen={onOpen}
                 />
               </ErrorFuse>
             </TabPanel>
@@ -64,7 +68,7 @@ function MainPage() {
         </Tabs>
 
         <ErrorFuse>
-          <CharInfo charItem={selectedChar} />
+          <CharInfo charItem={selectedChar} isOpen={isOpen} onClose={onClose} />
         </ErrorFuse>
       </Flex>
     </Flex>
