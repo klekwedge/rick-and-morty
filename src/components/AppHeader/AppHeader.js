@@ -50,6 +50,17 @@ const AppHeader = () => {
               Episodes
             </NavLink>
           </li>
+          {/* <li>
+            <NavLink
+              to="/favorites"
+              style={({ isActive }) => ({
+                fontWeight: isActive ? "700" : "400",
+                class: isActive ? "active" : "effect-3",
+              })}
+            >
+              Favorites
+            </NavLink>
+          </li> */}
         </List>
       </Flex>
     </Flex>

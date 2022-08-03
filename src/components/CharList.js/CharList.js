@@ -1,12 +1,16 @@
-import { useState, useEffect, useRef } from "react";
+import { useState, useEffect, useRef, useContext } from "react";
 import { Flex, List, ListItem, Image, Heading, Button } from "@chakra-ui/react";
 import RickAndMortyService from "../../services/RickAndMortyService";
 import Spinner from "../Spinner/Spinner";
 import ErrorMessage from "../ErrorMessage/ErrorMessage";
-import LikeButton from '../LikeButton/LikeButton';
+import LikeButton from "../LikeButton/LikeButton";
+import favoriteCharsContext from "../context";
+
 import "./CharList.scss";
 
 const CharList = ({ onCharSelected }) => {
+  // const context = useContext(favoriteCharsContext);
+
   const [charList, setCharList] = useState([]);
   const [currentCharPage, setCurrentCharPage] = useState(1);
   const [loading, setLoading] = useState(true);
@@ -18,6 +22,17 @@ const CharList = ({ onCharSelected }) => {
     charRefs.current.forEach((myRef) => myRef.classList.remove("_active"));
     charRefs.current[id].classList.add("_active");
     charRefs.current[id].focus();
+  };
+
+  const addCharToFavorite = (e) => {
+    if (
+      e.target.tagName === "svg" ||
+      e.target.tagName === "input" ||
+      e.target.tagName === "circle" ||
+      e.target.tagName === "path"
+    ) {
+      // context.forceChangeFavoriteList(e.currentTarget);
+    }
   };
 
   const rickAndMortyService = new RickAndMortyService();
@@ -50,6 +65,7 @@ const CharList = ({ onCharSelected }) => {
     ? charList.map((item, i) => {
         return (
           <ListItem
+            className={item.id}
             tabIndex="0"
             key={item.id}
             ref={(el) => (charRefs.current[i] = el)}
@@ -63,11 +79,12 @@ const CharList = ({ onCharSelected }) => {
             pb="15px"
             overflow="hidden"
             cursor="pointer"
-            position='relative'
+            position="relative"
             borderRadius="5px"
-            onClick={() => {
+            onClick={(e) => {
               focusOnItem(i);
               onCharSelected(item.id);
+              addCharToFavorite(e);
             }}
             onKeyPress={(e) => {
               if (e.key === " " || e.key === "Enter") {
@@ -82,7 +99,16 @@ const CharList = ({ onCharSelected }) => {
             <Heading as="h2" fontSize="20px" textAlign="center">
               {item.name}
             </Heading>
-            <LikeButton itemId={item.id}/>
+            {/* <Button
+              position="absolute"
+              top="-7px"
+              right="-20px"
+              background="transparent"
+              _active={{ bacground: "transparent" }}
+              _hover={{ bacground: "transparent" }}
+            >
+              <LikeButton itemId={item.id} />
+            </Button> */}
           </ListItem>
         );
       })
