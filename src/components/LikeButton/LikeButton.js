@@ -1,7 +1,7 @@
 import "./LikeButton.scss";
 const LikeButton = ({ itemId }) => {
   return (
-    <div>
+    <>
       <input
         className="checkboxHeart"
         type="checkbox"
@@ -70,7 +70,7 @@ const LikeButton = ({ itemId }) => {
           </g>
         </svg>
       </label>
-    </div>
+    </>
   );
 };
 
