@@ -20,16 +20,16 @@ const FavoriteCharList = ({ onCharSelected, favoriteCharList }) => {
     charRefs.current[id].focus();
   };
 
-  const removeCharFromFavorite = (e) => {
-    if (
-      e.target.tagName === "svg" ||
-      e.target.tagName === "input" ||
-      e.target.tagName === "circle" ||
-      e.target.tagName === "path"
-    ) {
-      // context.forceChangeFavoriteList(e.currentTarget);
-    }
-  };
+  // const removeCharFromFavorite = (e) => {
+  //   if (
+  //     e.target.tagName === "svg" ||
+  //     e.target.tagName === "input" ||
+  //     e.target.tagName === "circle" ||
+  //     e.target.tagName === "path"
+  //   ) {
+  //     // context.forceChangeFavoriteList(e.currentTarget);
+  //   }
+  // };
 
   const content =
     favoriteCharList.length > 0 ? (
@@ -54,12 +54,12 @@ const FavoriteCharList = ({ onCharSelected, favoriteCharList }) => {
             borderRadius="5px"
             onClick={(e) => {
               focusOnItem(i);
-              onCharSelected(item.id);
-              removeCharFromFavorite(e);
+              onCharSelected(item);
+              // removeCharFromFavorite(e);
             }}
             onKeyPress={(e) => {
               if (e.key === " " || e.key === "Enter") {
-                onCharSelected(item.id);
+                onCharSelected(item);
                 focusOnItem(i);
               }
             }}

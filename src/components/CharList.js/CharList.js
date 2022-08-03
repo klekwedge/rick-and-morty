@@ -33,7 +33,8 @@ const CharList = ({ onCharSelected, onCharFavorite }) => {
       onCharFavorite(item, option);
     } else {
       focusOnItem(index);
-      onCharSelected(itemId);
+
+      onCharSelected(item);
     }
   };
 
@@ -87,7 +88,7 @@ const CharList = ({ onCharSelected, onCharFavorite }) => {
             }}
             onKeyPress={(e) => {
               if (e.key === " " || e.key === "Enter") {
-                onCharSelected(item.id);
+                onCharSelected(item);
                 focusOnItem(i);
               }
             }}

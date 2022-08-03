@@ -1,5 +1,12 @@
 import { useState } from "react";
-import { Flex, Tabs, TabList, TabPanels, Tab, TabPanel } from "@chakra-ui/react";
+import {
+  Flex,
+  Tabs,
+  TabList,
+  TabPanels,
+  Tab,
+  TabPanel,
+} from "@chakra-ui/react";
 import CharList from "../CharList.js/CharList";
 import CharInfo from "../CharInfo.js/CharInfo";
 import ErrorFuse from "../ErrorFuse/ErrorFuse";
@@ -7,7 +14,7 @@ import RandomChar from "../RandomChar/RandomChar";
 import FavoriteCharList from "../FavoriteCharList/FavoriteCharList";
 
 function MainPage() {
-  const [selectedChar, setChar] = useState(null);
+  const [selectedChar, setSelectedChar] = useState(null);
   const [favoriteCharList, setFavoriteCharList] = useState([]);
 
   const onCharFavorite = (char, option) => {
@@ -20,8 +27,8 @@ function MainPage() {
     }
   };
 
-  const onCharSelected = (id) => {
-    setChar(id);
+  const onCharSelected = (charItem) => {
+    setSelectedChar(charItem);
   };
 
   return (
@@ -34,7 +41,7 @@ function MainPage() {
           <Tabs>
             <TabList>
               <Tab>Char list</Tab>
-              <Tab>Favorite char list</Tab>
+              <Tab> Favorite char list</Tab>
             </TabList>
 
             <TabPanels>
@@ -46,15 +53,15 @@ function MainPage() {
               </TabPanel>
               <TabPanel>
                 <FavoriteCharList
-                  favoriteCharList={favoriteCharList}
                   onCharSelected={onCharSelected}
+                  favoriteCharList={favoriteCharList}
                 />
               </TabPanel>
             </TabPanels>
           </Tabs>
         </ErrorFuse>
         <ErrorFuse>
-          <CharInfo charId={selectedChar} />
+          <CharInfo charItem={selectedChar} />
         </ErrorFuse>
       </Flex>
     </Flex>

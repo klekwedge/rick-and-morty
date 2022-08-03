@@ -1,31 +1,11 @@
-import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
 import { Flex, Skeleton, Heading, Image, Box } from "@chakra-ui/react";
-import RickAndMortyService from "../../services/RickAndMortyService";
 
-const CharInfo = ({ charId }) => {
-  const [char, setChar] = useState(null);
+const CharInfo = ({ charItem }) => {
+  
 
-  const rickAndMortyService = new RickAndMortyService();
-
-  useEffect(() => {
-    updateChar();
-  }, [charId]);
-
-  const updateChar = () => {
-    if (!charId) {
-      return;
-    }
-
-    rickAndMortyService.getCharacter(charId).then(onCharLoaded);
-  };
-
-  const onCharLoaded = (char) => {
-    setChar(char);
-  };
-
-  const content = char ? (
-    <View char={char} />
+  const content = charItem ? (
+    <View char={charItem} />
   ) : (
     <Skeleton width="100%" height="100%" />
   );
