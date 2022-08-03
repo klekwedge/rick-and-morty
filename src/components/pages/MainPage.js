@@ -13,6 +13,7 @@ import CharInfo from "../CharInfo.js/CharInfo";
 import ErrorFuse from "../ErrorFuse/ErrorFuse";
 import RandomChar from "../RandomChar/RandomChar";
 import FavoriteCharList from "../FavoriteCharList/FavoriteCharList";
+import CharSearchForm from "../CharSearchForm/CharSearchForm";
 
 function MainPage() {
   const [selectedChar, setSelectedChar] = useState(null);
@@ -44,7 +45,6 @@ function MainPage() {
             <Tab>Char list</Tab>
             <Tab> Favorite char list</Tab>
           </TabList>
-
           <TabPanels width="100%">
             <TabPanel>
               <ErrorFuse>

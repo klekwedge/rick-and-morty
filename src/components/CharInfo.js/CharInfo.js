@@ -48,9 +48,19 @@ const CharInfo = ({ charItem, isOpen, onClose }) => {
                 borderRadius="50%"
               ></Box>
               <Heading as="h4" fontSize="18px" color="white">
-                {charItem.status} - {charItem.species}
+                Status: {charItem.status}
               </Heading>
             </Flex>
+
+            <Heading as="h4" fontSize="18px" color="white">
+              Species: {charItem.species}
+            </Heading>
+            <Heading as="h4" fontSize="18px" color="white">
+              Gender:
+            </Heading>
+            <Heading as="h4" fontSize="14px" color="white">
+              {charItem.gender}
+            </Heading>
             <Heading as="h4" fontSize="18px" color="white">
               Origin:
             </Heading>
@@ -69,7 +79,7 @@ const CharInfo = ({ charItem, isOpen, onClose }) => {
           </Box>
         </ModalBody>
 
-        <ModalFooter display="flex" gap="20px">
+        <ModalFooter display="flex" gap="10px">
           <Button
             backgroundColor="#3182ce"
             fontSize="16px"

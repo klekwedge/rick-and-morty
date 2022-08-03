@@ -4,10 +4,10 @@ import RickAndMortyService from "../../services/RickAndMortyService";
 import Spinner from "../Spinner/Spinner";
 import ErrorMessage from "../ErrorMessage/ErrorMessage";
 import LikeButton from "../LikeButton/LikeButton";
+import CharSearchForm from "../CharSearchForm/CharSearchForm";
 import "./CharList.scss";
 
-
-const CharList = ({ onCharSelected, onCharFavorite, onOpen}) => {
+const CharList = ({ onCharSelected, onCharFavorite, onOpen }) => {
   const [charList, setCharList] = useState([]);
   const [currentCharPage, setCurrentCharPage] = useState(1);
   const [loading, setLoading] = useState(true);
@@ -116,7 +116,12 @@ const CharList = ({ onCharSelected, onCharFavorite, onOpen}) => {
     : null;
 
   return (
-    <Flex alignItems="center" flexDirection="column" gap="20px" pb="50px">
+    <Flex flexDirection="column" gap="20px" pb="50px">
+      <CharSearchForm
+        onCharSelected={onCharSelected}
+        onCharFavorite={onCharFavorite}
+        onOpen={onOpen}
+      />
       <List display="flex" gap="20px" flexWrap="wrap">
         {spinner}
         {errorMessage}
@@ -128,6 +133,7 @@ const CharList = ({ onCharSelected, onCharFavorite, onOpen}) => {
           setCurrentCharPage(() => currentCharPage + 1);
           onRequest(currentCharPage);
         }}
+        alignSelf='center'
         background="#3C3E44"
         color="white"
         maxWidth="200px"
