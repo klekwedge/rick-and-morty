@@ -11,6 +11,8 @@ import {
   Button,
 } from "@chakra-ui/react";
 
+import "./CharInfo.scss";
+
 const CharInfo = ({ charItem, isOpen, onClose }) => {
   const checkStatus = (status) => {
     switch (status) {
@@ -39,8 +41,8 @@ const CharInfo = ({ charItem, isOpen, onClose }) => {
             alt={charItem.name + " image"}
             title={charItem.name}
           />
-          <Box>
-            <Flex alignItems="center" gap="5px" mb="10px">
+          <Flex gap="5px" flexDirection="column">
+            <Flex alignItems="center" gap="5px">
               <Box
                 background={() => checkStatus(charItem.status)}
                 width="10px"
@@ -48,35 +50,26 @@ const CharInfo = ({ charItem, isOpen, onClose }) => {
                 borderRadius="50%"
               ></Box>
               <Heading as="h4" fontSize="18px" color="white">
-                Status: {charItem.status}
+                Status: <span>{charItem.status}</span>
               </Heading>
             </Flex>
 
             <Heading as="h4" fontSize="18px" color="white">
-              Species: {charItem.species}
+              Species:<span> {charItem.species}</span>
             </Heading>
             <Heading as="h4" fontSize="18px" color="white">
-              Gender:
-            </Heading>
-            <Heading as="h4" fontSize="14px" color="white">
-              {charItem.gender}
+              Gender:<span> {charItem.gender}</span>
             </Heading>
             <Heading as="h4" fontSize="18px" color="white">
-              Origin:
-            </Heading>
-            <Heading as="h4" fontSize="14px" color="white" mb="10px">
-              {charItem.origin.name}
+              Origin: <span> {charItem.origin.name}</span>
             </Heading>
             <Heading as="h4" fontSize="18px" color="white">
-              Last known location:
+              Last known location: <span> {charItem.location.name}</span>
             </Heading>
-            <Heading as="h4" fontSize="14px" color="white" mb="10px">
-              {charItem.location.name}
+            <Heading as="h4" fontSize="18px" color="white">
+              Episodes: <span> {charItem.episode.length}</span>
             </Heading>
-            <Heading as="h4" fontSize="14px" color="white" mb="20px">
-              Episodes: {charItem.episode.length}
-            </Heading>
-          </Box>
+          </Flex>
         </ModalBody>
 
         <ModalFooter display="flex" gap="10px">
