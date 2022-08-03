@@ -23,15 +23,23 @@ const CharacterTemplate = ({ character, onRequest }) => {
           maxWidth="200px"
           maxHeight="200px"
         />
-        <Flex flexDirection="column" gap="5px">
+        <Flex flexDirection="column" gap="8px">
           <Heading as="h3" fontWeight="500" fontSize="18px">
             Name: {character.name}
           </Heading>
-          <h3>Gender: {character.gender}</h3>
-          <h3>Species: {character.species}</h3>
-          <h3>Status: {character.status}</h3>
-          <h3>Location: {character.location.name}</h3>
-          <Heading as="h3" fontWeight="400" fontSize="16px" mb="10px">
+          <Heading as="h3" fontWeight="400" fontSize="16px">
+            Gender: {character.gender}
+          </Heading>
+          <Heading as="h3" fontWeight="400" fontSize="16px">
+            Species: {character.species}
+          </Heading>
+          <Heading as="h3" fontWeight="400" fontSize="16px">
+            Status: {character.status}
+          </Heading>
+          <Heading as="h3" fontWeight="400" fontSize="16px">
+            Location: {character.location.name}
+          </Heading>
+          <Heading as="h3" fontWeight="400" fontSize="16px">
             Origin: {character.origin.name}
           </Heading>
           <Heading as="h3" fontWeight="400" fontSize="16px">
