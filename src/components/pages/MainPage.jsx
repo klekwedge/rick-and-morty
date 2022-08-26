@@ -1,19 +1,12 @@
-import { useState } from "react";
+import React, { useState } from 'react';
 import {
-  Flex,
-  Tabs,
-  TabList,
-  TabPanels,
-  Tab,
-  TabPanel,
-  useDisclosure,
-} from "@chakra-ui/react";
-import CharList from "../CharList.js/CharList";
-import CharInfo from "../CharInfo.js/CharInfo";
-import ErrorFuse from "../ErrorFuse/ErrorFuse";
-import RandomChar from "../RandomChar/RandomChar";
-import FavoriteCharList from "../FavoriteCharList/FavoriteCharList";
-import CharSearchForm from "../CharSearchForm/CharSearchForm";
+  Flex, Tabs, TabList, TabPanels, Tab, TabPanel, useDisclosure,
+} from '@chakra-ui/react';
+import CharList from '../CharList.js/CharList';
+import CharInfo from '../CharInfo.js/CharInfo';
+import ErrorFuse from '../ErrorFuse/ErrorFuse';
+import RandomChar from '../RandomChar/RandomChar';
+import FavoriteCharList from '../FavoriteCharList/FavoriteCharList';
 
 function MainPage() {
   const [selectedChar, setSelectedChar] = useState(null);
@@ -21,12 +14,10 @@ function MainPage() {
   const { isOpen, onOpen, onClose } = useDisclosure();
 
   const onCharFavorite = (char, option) => {
-    if (option === "add") {
+    if (option === 'add') {
       setFavoriteCharList([...favoriteCharList, char]);
     } else {
-      setFavoriteCharList([
-        ...favoriteCharList.filter((charItem) => charItem !== char),
-      ]);
+      setFavoriteCharList([...favoriteCharList.filter((charItem) => charItem !== char)]);
     }
   };
 

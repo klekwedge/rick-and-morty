@@ -1,6 +1,7 @@
+import React from 'react';
 import { Box } from '@chakra-ui/react';
 
-const Spinner = () => {
+function Spinner() {
   return (
     <Box m="0 auto">
       <svg
@@ -64,6 +65,6 @@ const Spinner = () => {
       </svg>
     </Box>
   );
-};
+}
 
 export default Spinner;

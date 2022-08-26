@@ -1,11 +1,13 @@
-import { useEffect, useState } from "react";
-import { Link } from "react-router-dom";
-import { Flex, Heading, Image, Button } from "@chakra-ui/react";
-import RickAndMortyService from "../../services/RickAndMortyService";
-import Spinner from "../Spinner/Spinner";
-import ErrorMessage from "../ErrorMessage/ErrorMessage";
+import React, { useEffect, useState } from 'react';
+import { Link } from 'react-router-dom';
+import {
+  Flex, Heading, Image, Button,
+} from '@chakra-ui/react';
+import RickAndMortyService from '../../services/RickAndMortyService';
+import Spinner from '../Spinner/Spinner';
+import ErrorMessage from '../ErrorMessage/ErrorMessage';
 
-const CharacterTemplate = ({ character, onRequest }) => {
+function CharacterTemplate({ character, onRequest }) {
   return (
     <Flex
       justifyContent="space-between"
@@ -25,25 +27,39 @@ const CharacterTemplate = ({ character, onRequest }) => {
         />
         <Flex flexDirection="column" gap="8px">
           <Heading as="h3" fontWeight="500" fontSize="18px">
-            Name: {character.name}
+            Name:
+            {' '}
+            {character.name}
           </Heading>
           <Heading as="h3" fontWeight="400" fontSize="16px">
-            Gender: {character.gender}
+            Gender:
+            {' '}
+            {character.gender}
           </Heading>
           <Heading as="h3" fontWeight="400" fontSize="16px">
-            Species: {character.species}
+            Species:
+            {' '}
+            {character.species}
           </Heading>
           <Heading as="h3" fontWeight="400" fontSize="16px">
-            Status: {character.status}
+            Status:
+            {' '}
+            {character.status}
           </Heading>
           <Heading as="h3" fontWeight="400" fontSize="16px">
-            Location: {character.location.name}
+            Location:
+            {' '}
+            {character.location.name}
           </Heading>
           <Heading as="h3" fontWeight="400" fontSize="16px">
-            Origin: {character.origin.name}
+            Origin:
+            {' '}
+            {character.origin.name}
           </Heading>
           <Heading as="h3" fontWeight="400" fontSize="16px">
-            Episodes: {character.episode.length}
+            Episodes:
+            {' '}
+            {character.episode.length}
           </Heading>
         </Flex>
       </Flex>
@@ -53,7 +69,7 @@ const CharacterTemplate = ({ character, onRequest }) => {
           border="2px solid #FF9800"
           background="inherit"
           transition="all 0.4s ease"
-          _hover={{ background: "#FF9800" }}
+          _hover={{ background: '#FF9800' }}
         >
           <Link to={`/characters/${character.id}`}>HomePage</Link>
         </Button>
@@ -62,7 +78,7 @@ const CharacterTemplate = ({ character, onRequest }) => {
           border="2px solid #FF9800"
           background="inherit"
           transition="all 0.4s ease"
-          _hover={{ background: "#FF9800" }}
+          _hover={{ background: '#FF9800' }}
           onClick={onRequest}
         >
           Random char
@@ -70,26 +86,14 @@ const CharacterTemplate = ({ character, onRequest }) => {
       </Flex>
     </Flex>
   );
-};
+}
 
-const RandomChar = () => {
+function RandomChar() {
   const [currentChar, setCurrentChar] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
 
   const rickAndMortyService = new RickAndMortyService();
-
-  useEffect(() => {
-    onRequest();
-  }, []);
-
-  const onRequest = () => {
-    const charId = Math.floor(Math.random() * (826 - 1) + 1);
-    rickAndMortyService
-      .getCharacter(charId)
-      .then(onCharacterLoaded)
-      .catch(onError);
-  };
 
   const onCharacterLoaded = (data) => {
     setCurrentChar(data);
@@ -100,6 +104,14 @@ const RandomChar = () => {
     setLoading(false);
     setError(true);
   };
+  const onRequest = () => {
+    const charId = Math.floor(Math.random() * (826 - 1) + 1);
+    rickAndMortyService.getCharacter(charId).then(onCharacterLoaded).catch(onError);
+  };
+
+  useEffect(() => {
+    onRequest();
+  }, []);
 
   const errorMessage = error ? <ErrorMessage /> : null;
   const spinner = loading ? <Spinner /> : null;
@@ -114,6 +126,6 @@ const RandomChar = () => {
       {content}
     </>
   );
-};
+}
 
 export default RandomChar;
