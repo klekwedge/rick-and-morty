@@ -1,14 +1,13 @@
-import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
-import {
-  ListItem, Flex, Image, Heading, List,
-} from '@chakra-ui/react';
-import ErrorMessage from '../ErrorMessage/ErrorMessage';
-import Spinner from '../Spinner/Spinner';
-import RickAndMortyService from '../../services/RickAndMortyService';
+import React, { useState, useEffect } from "react";
+import { ListItem, Flex, Image, Heading, List } from "@chakra-ui/react";
+import ErrorMessage from "../../components/ErrorMessage/ErrorMessage";
+import Spinner from "../../components/Spinner/Spinner";
+import RickAndMortyService from "../../services/RickAndMortyService";
+import { useRouter } from "next/router";
 
-function SingleLocationLayout() {
-  const { id } = useParams();
+function SingleLocation() {
+  const router = useRouter();
+  const { id } = router.query;
 
   const [data, setData] = useState(null);
   const [residentList, setResidentList] = useState([]);
@@ -28,7 +27,9 @@ function SingleLocationLayout() {
   };
 
   const updateResidents = (residents) => {
-    residents.map((url) => rickAndMortyService.getData(url).then(onResidentsLoaded).catch(onError));
+    residents.map((url) =>
+      rickAndMortyService.getData(url).then(onResidentsLoaded).catch(onError)
+    );
   };
 
   const onDataLoaded = (newData) => {
@@ -53,9 +54,7 @@ function SingleLocationLayout() {
       <Flex gap="40px" mb="20px">
         <Flex flexDirection="column" gap="5px">
           <Heading as="h3" fontWeight="500" fontSize="20px">
-            Name:
-            {' '}
-            {data.name}
+            Name: {data.name}
           </Heading>
           <h3>
             Type:
@@ -69,9 +68,7 @@ function SingleLocationLayout() {
       </Flex>
 
       <Heading as="h3" fontWeight="500" fontSize="20px" mb="20px">
-        Residents:
-        {' '}
-        {residentList.length}
+        Residents: {residentList.length}
       </Heading>
 
       <List display="flex" gap="20px" flexWrap="wrap" pb="50px">
@@ -91,9 +88,12 @@ function SingleLocationLayout() {
             cursor="pointer"
             borderRadius="5px"
             transition="all .3s ease-in-out"
-            _hover={{ transform: 'scale(1.05)' }}
+            _hover={{ transform: "scale(1.05)" }}
           >
-            <Image alt={`${residentItem.name} image`} src={residentItem.image} />
+            <Image
+              alt={`${residentItem.name} image`}
+              src={residentItem.image}
+            />
             <Heading as="h2" fontSize="20px" textAlign="center">
               {residentItem.name}
             </Heading>
@@ -112,4 +112,4 @@ function SingleLocationLayout() {
   );
 }
 
-export default SingleLocationLayout;
+export default SingleLocation;
