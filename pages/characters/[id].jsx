@@ -17,7 +17,7 @@ import ErrorMessage from "../../components/ErrorMessage/ErrorMessage";
 import Spinner from "../../components/Spinner/Spinner";
 import RickAndMortyService from "../../services/RickAndMortyService";
 
-function SingleCharacterLayout() {
+function SingleCharacter() {
   const router = useRouter();
   const { id } = router.query;
 
@@ -132,4 +132,4 @@ function SingleCharacterLayout() {
   );
 }
 
-export default SingleCharacterLayout;
+export default SingleCharacter;

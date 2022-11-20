@@ -1,15 +1,14 @@
 /* eslint-disable max-len */
-import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
-import {
-  Heading, ListItem, List, Flex, Image,
-} from '@chakra-ui/react';
-import ErrorMessage from '../ErrorMessage/ErrorMessage';
-import Spinner from '../Spinner/Spinner';
-import RickAndMortyService from '../../services/RickAndMortyService';
+import React, { useState, useEffect } from "react";
+import { Heading, ListItem, List, Flex, Image } from "@chakra-ui/react";
+import ErrorMessage from "../../components/ErrorMessage/ErrorMessage";
+import Spinner from "../../components/Spinner/Spinner";
+import RickAndMortyService from "../../services/RickAndMortyService";
+import { useRouter } from "next/router";
 
-function SingleEpisodeLayout() {
-  const { id } = useParams();
+function SingleEpisode() {
+  const router = useRouter();
+  const { id } = router.query;
 
   const [data, setData] = useState(null);
   const [characterList, setCharacterList] = useState([]);
@@ -29,7 +28,12 @@ function SingleEpisodeLayout() {
   };
 
   const updateCharacters = (characters) => {
-    characters.map((characterUrl) => rickAndMortyService.getData(characterUrl).then(onCharacterLoaded).catch(onError));
+    characters.map((characterUrl) =>
+      rickAndMortyService
+        .getData(characterUrl)
+        .then(onCharacterLoaded)
+        .catch(onError)
+    );
   };
 
   const onDataLoaded = (newData) => {
@@ -54,9 +58,7 @@ function SingleEpisodeLayout() {
       <Flex gap="40px" mb="20px">
         <Flex flexDirection="column" gap="5px">
           <Heading as="h3" fontWeight="500" fontSize="20px">
-            Name:
-            {' '}
-            {data.name}
+            Name: {data.name}
           </Heading>
           <h3>
             Air date:
@@ -70,9 +72,7 @@ function SingleEpisodeLayout() {
       </Flex>
 
       <Heading as="h3" fontWeight="500" fontSize="20px" mb="20px">
-        Characters:
-        {' '}
-        {characterList.length}
+        Characters: {characterList.length}
       </Heading>
 
       <List display="flex" gap="20px" flexWrap="wrap" pb="50px">
@@ -92,7 +92,7 @@ function SingleEpisodeLayout() {
             cursor="pointer"
             borderRadius="5px"
             transition="all .3s ease-in-out"
-            _hover={{ transform: 'scale(1.05)' }}
+            _hover={{ transform: "scale(1.05)" }}
           >
             <Image alt={`${item.name} image`} src={item.image} />
             <Heading as="h2" fontSize="20px" textAlign="center">
@@ -113,4 +113,4 @@ function SingleEpisodeLayout() {
   );
 }
 
-export default SingleEpisodeLayout;
+export default SingleEpisode;
