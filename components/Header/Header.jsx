@@ -1,6 +1,6 @@
 import React from 'react';
 import { Flex, List, Heading } from '@chakra-ui/react';
-import './AppHeader.module.scss';
+import './Header.module.scss';
 
 function AppHeader() {
   return (

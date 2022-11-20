@@ -1,6 +1,6 @@
 import { ChakraProvider, Flex } from "@chakra-ui/react";
 import type { AppProps } from "next/app";
-import AppHeader from "../components/AppHeader/AppHeader";
+import Header from "../components/Header/Header";
 import "./../styles/globals.scss";
 
 export default function App({ Component, pageProps }: AppProps) {
@@ -13,7 +13,7 @@ export default function App({ Component, pageProps }: AppProps) {
         p="10px"
         maxWidth="1100px"
       >
-        <AppHeader />
+        <Header />
         <Flex as="main" gap="50px">
           <Component {...pageProps} />
         </Flex>

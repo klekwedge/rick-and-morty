@@ -1,7 +1,6 @@
-import React from 'react';
-import { Link } from 'react-router-dom';
+import React from "react";
 
-import './Page404.scss';
+import '../styles/Page404.module.scss'
 
 function Page404() {
   return (
@@ -13,12 +12,12 @@ function Page404() {
         </div>
         <p>
           The page you are trying to find has
-          {' '}
           <br />
-          {' '}
           moved to another universe.
         </p>
-        <Link to="/">GET ME HOME</Link>
+        {/* <Link to="/"> */}
+        GET ME HOME
+        {/* </Link> */}
       </div>
     </div>
   );
