@@ -1,11 +1,8 @@
-import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import {
-  Flex, List, ListItem, Heading, Button,
-} from '@chakra-ui/react';
-import RickAndMortyService from '../../services/RickAndMortyService';
-import Spinner from '../Spinner/Spinner';
-import ErrorMessage from '../ErrorMessage/ErrorMessage';
+import React, { useState, useEffect } from "react";
+import { Flex, List, ListItem, Heading, Button } from "@chakra-ui/react";
+import RickAndMortyService from "../../services/RickAndMortyService";
+import Spinner from "../../components/Spinner/Spinner";
+import ErrorMessage from "../../components/ErrorMessage/ErrorMessage";
 
 function LocationPage() {
   const [charList, setCharList] = useState([]);
@@ -25,7 +22,10 @@ function LocationPage() {
     setLoading(false);
   };
   const onRequest = (page) => {
-    rickAndMortyService.getAllLocations(page).then(onLocationListLoaded).catch(onError);
+    rickAndMortyService
+      .getAllLocations(page)
+      .then(onLocationListLoaded)
+      .catch(onError);
   };
 
   useEffect(() => {
@@ -66,9 +66,11 @@ function LocationPage() {
             fontSize="18px"
             textAlign="center"
             transition="all 0.3s ease"
-            _hover={{ color: '#FF9800' }}
+            _hover={{ color: "#FF9800" }}
           >
-            <Link to={`/locations/${item.id}`}>Homepage</Link>
+            {/* <Link to={`/locations/${item.id}`}> */}
+            Homepage
+            {/* </Link> */}
           </Heading>
         </ListItem>
       ))}
@@ -88,8 +90,8 @@ function LocationPage() {
         background="#3C3E44"
         color="white"
         maxWidth="200px"
-        _hover={{ background: '#FF9800' }}
-        display={currentLocationPage <= 7 ? 'block' : 'none'}
+        _hover={{ background: "#FF9800" }}
+        display={currentLocationPage <= 7 ? "block" : "none"}
       >
         Load more
       </Button>
