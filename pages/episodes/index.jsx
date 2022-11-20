@@ -1,11 +1,8 @@
-import React, { useState, useEffect } from 'react';
-import { Link } from 'react-router-dom';
-import {
-  Flex, List, ListItem, Heading, Button,
-} from '@chakra-ui/react';
-import RickAndMortyService from '../../services/RickAndMortyService';
-import Spinner from '../Spinner/Spinner';
-import ErrorMessage from '../ErrorMessage/ErrorMessage';
+import React, { useState, useEffect } from "react";
+import { Flex, List, ListItem, Heading, Button } from "@chakra-ui/react";
+import RickAndMortyService from "../../services/RickAndMortyService";
+import Spinner from "../../components/Spinner/Spinner";
+import ErrorMessage from "../../components/ErrorMessage/ErrorMessage";
 
 function EpisodesPage() {
   const [charList, setCharList] = useState([]);
@@ -26,7 +23,10 @@ function EpisodesPage() {
   };
 
   const onRequest = (page) => {
-    rickAndMortyService.getAllEpisodes(page).then(onEpisodeListLoaded).catch(onError);
+    rickAndMortyService
+      .getAllEpisodes(page)
+      .then(onEpisodeListLoaded)
+      .catch(onError);
   };
 
   useEffect(() => {
@@ -63,9 +63,11 @@ function EpisodesPage() {
             fontSize="18px"
             textAlign="center"
             transition="all 0.3s ease"
-            _hover={{ color: '#FF9800' }}
+            _hover={{ color: "#FF9800" }}
           >
-            <Link to={`/episodes/${item.id}`}>Homepage</Link>
+            {/* <Link to={`/episodes/${item.id}`}> */}
+            Homepage
+            {/* </Link> */}
           </Heading>
         </ListItem>
       ))}
@@ -81,12 +83,12 @@ function EpisodesPage() {
         background="#3C3E44"
         color="white"
         maxWidth="200px"
-        _hover={{ background: '#FF9800' }}
+        _hover={{ background: "#FF9800" }}
         onClick={() => {
           setCurrentEpisodePage(() => currentEpisodePage + 1);
           onRequest(currentEpisodePage);
         }}
-        display={currentEpisodePage <= 3 ? 'block' : 'none'}
+        display={currentEpisodePage <= 3 ? "block" : "none"}
       >
         Load more
       </Button>
