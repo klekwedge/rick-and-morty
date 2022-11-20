@@ -3,6 +3,7 @@ import { Flex, List, ListItem, Heading, Button } from "@chakra-ui/react";
 import RickAndMortyService from "../../services/RickAndMortyService";
 import Spinner from "../../components/Spinner/Spinner";
 import ErrorMessage from "../../components/ErrorMessage/ErrorMessage";
+import Link from "next/link";
 
 function LocationPage() {
   const [charList, setCharList] = useState([]);
@@ -68,9 +69,9 @@ function LocationPage() {
             transition="all 0.3s ease"
             _hover={{ color: "#FF9800" }}
           >
-            {/* <Link to={`/locations/${item.id}`}> */}
+            <Link href={`/locations/${item.id}`}>
             Homepage
-            {/* </Link> */}
+            </Lin>
           </Heading>
         </ListItem>
       ))}

@@ -1,3 +1,4 @@
+import { Link } from "@chakra-ui/react";
 import React from "react";
 
 import '../styles/Page404.module.scss'
@@ -15,9 +16,9 @@ function Page404() {
           <br />
           moved to another universe.
         </p>
-        {/* <Link to="/"> */}
+        <Link href="/">
         GET ME HOME
-        {/* </Link> */}
+        </Link>
       </div>
     </div>
   );

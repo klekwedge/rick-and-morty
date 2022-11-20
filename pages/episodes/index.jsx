@@ -3,6 +3,7 @@ import { Flex, List, ListItem, Heading, Button } from "@chakra-ui/react";
 import RickAndMortyService from "../../services/RickAndMortyService";
 import Spinner from "../../components/Spinner/Spinner";
 import ErrorMessage from "../../components/ErrorMessage/ErrorMessage";
+import Link from "next/link";
 
 function EpisodesPage() {
   const [charList, setCharList] = useState([]);
@@ -65,9 +66,7 @@ function EpisodesPage() {
             transition="all 0.3s ease"
             _hover={{ color: "#FF9800" }}
           >
-            {/* <Link to={`/episodes/${item.id}`}> */}
-            Homepage
-            {/* </Link> */}
+            <Link href={`/episodes/${item.id}`}>Homepage</Link>
           </Heading>
         </ListItem>
       ))}
