@@ -8,9 +8,9 @@ import Spinner from '../Spinner/Spinner';
 import ErrorMessage from '../ErrorMessage/ErrorMessage';
 import LikeButton from '../LikeButton/LikeButton';
 // import CharSearchForm from '../CharSearchForm/CharSearchForm';
-import './CharList.scss';
+import './CharList.module.scss';
 
-function CharList({ onCharSelected, onCharFavorite, onOpen }) {
+function CharList({ onCharSelected, onCharFavorite, onOpen }: any) {
   const [charList, setCharList] = useState([]);
   const [currentCharPage, setCurrentCharPage] = useState(1);
   const [loading, setLoading] = useState(true);

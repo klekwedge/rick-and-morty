@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import {
   Flex,
   Heading,
@@ -14,8 +13,6 @@ import {
   ModalCloseButton,
   Button,
 } from '@chakra-ui/react';
-
-import './CharInfo.scss';
 
 function CharInfo({ charItem, isOpen, onClose }) {
   const checkStatus = (status) => {

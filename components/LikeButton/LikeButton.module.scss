@@ -1,14 +1,16 @@
-svg {
+.heart {
   stroke: black;
   stroke-width: 2;
   border-radius: 0px 0px 0px 50% ;
   cursor: pointer;
   overflow: visible;
   width: 43px;
+  
   #heart {
     transform-origin: center;
     animation: animateHeartOut 0.3s linear forwards;
   }
+
   #main-circ {
     transform-origin: 29.5px 29.5px;
   }

@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { Link } from 'react-router-dom';
+// import { Link } from 'react-router-dom';
 import {
   Flex, Heading, Image, Button,
 } from '@chakra-ui/react';
@@ -71,7 +71,7 @@ function CharacterTemplate({ character, onRequest }) {
           transition="all 0.4s ease"
           _hover={{ background: '#FF9800' }}
         >
-          <Link to={`/characters/${character.id}`}>HomePage</Link>
+          {/* <Link to={`/characters/${character.id}`}>HomePage</Link> */}
         </Button>
         <Button
           alignSelf="flex-end"

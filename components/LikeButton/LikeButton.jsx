@@ -1,13 +1,13 @@
 /* eslint-disable jsx-a11y/label-has-associated-control */
 import React from 'react';
-import './LikeButton.scss';
+import './LikeButton.module.scss';
 
 function LikeButton({ itemId }) {
   return (
     <>
       <input className="checkboxHeart" type="checkbox" id={`checkbox-${itemId}`} />
       <label htmlFor={`checkbox-${itemId}`}>
-        <svg id="heart-svg" viewBox="467 392 58 57" xmlns="http://www.w3.org/2000/svg">
+        <svg className='heart' id="heart-svg" viewBox="467 392 58 57" xmlns="http://www.w3.org/2000/svg">
           <g id="Group" fill="none" fillRule="evenodd" transform="translate(467 392)">
             <path
               d="M29.144 20.773c-.063-.13-4.227-8.67-11.44-2.59C7.63 28.795 28.94 43.256 29.143 43.394c.204-.138 21.513-14.6 11.44-25.213-7.214-6.08-11.377 2.46-11.44 2.59z"
