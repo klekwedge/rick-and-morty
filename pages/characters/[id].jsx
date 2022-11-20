@@ -1,5 +1,5 @@
-import React, { useState, useEffect } from 'react';
-import { useParams } from 'react-router-dom';
+import React, { useState, useEffect } from "react";
+import { useRouter } from "next/router";
 import {
   Heading,
   Table,
@@ -12,13 +12,14 @@ import {
   Th,
   Td,
   TableContainer,
-} from '@chakra-ui/react';
-import ErrorMessage from '../ErrorMessage/ErrorMessage';
-import Spinner from '../Spinner/Spinner';
-import RickAndMortyService from '../../services/RickAndMortyService';
+} from "@chakra-ui/react";
+import ErrorMessage from "../../components/ErrorMessage/ErrorMessage";
+import Spinner from "../../components/Spinner/Spinner";
+import RickAndMortyService from "../../services/RickAndMortyService";
 
 function SingleCharacterLayout() {
-  const { id } = useParams();
+  const router = useRouter();
+  const { id } = router.query;
 
   const [data, setData] = useState(null);
   const [episodeList, setEpisodeList] = useState([]);
@@ -38,7 +39,9 @@ function SingleCharacterLayout() {
   };
 
   const updateEpisodes = (episodes) => {
-    episodes.map((url) => rickAndMortyService.getData(url).then(onEpisodeLoaded).catch(onError));
+    episodes.map((url) =>
+      rickAndMortyService.getData(url).then(onEpisodeLoaded).catch(onError)
+    );
   };
 
   const onDataLoaded = (newData) => {
@@ -61,12 +64,15 @@ function SingleCharacterLayout() {
   const content = !(loading || error || !data) ? (
     <Box pb="50px">
       <Flex gap="40px" mb="20px">
-        <Image src={data.image} alt={data.name} borderRadius="5px" title={data.name} />
+        <Image
+          src={data.image}
+          alt={data.name}
+          borderRadius="5px"
+          title={data.name}
+        />
         <Flex flexDirection="column" gap="5px">
           <Heading as="h3" fontWeight="500" fontSize="20px">
-            Name:
-            {' '}
-            {data.name}
+            Name: {data.name}
           </Heading>
           <h3>
             Gender:
@@ -83,20 +89,15 @@ function SingleCharacterLayout() {
           <h3>
             Location:
             {data.location.name}
-          </h3>
-          {' '}
+          </h3>{" "}
           <Heading as="h3" fontWeight="400" fontSize="16px" mb="10px">
-            Origin:
-            {' '}
-            {data.origin.name}
+            Origin: {data.origin.name}
           </Heading>
         </Flex>
       </Flex>
 
       <Heading as="h3" fontWeight="500" fontSize="20px" mb="20px">
-        Episodes:
-        {' '}
-        {episodeList.length}
+        Episodes: {episodeList.length}
       </Heading>
 
       <TableContainer border="1px solid black">
@@ -111,18 +112,9 @@ function SingleCharacterLayout() {
           <Tbody>
             {episodeList.map((episodeItem) => (
               <Tr p="5px" key={episodeItem.id} background="#2EC4B6">
-                <Td>
-                  {' '}
-                  {episodeItem.name}
-                </Td>
-                <Td>
-                  {' '}
-                  {episodeItem.air_date}
-                </Td>
-                <Td>
-                  {' '}
-                  {episodeItem.episode}
-                </Td>
+                <Td> {episodeItem.name}</Td>
+                <Td> {episodeItem.air_date}</Td>
+                <Td> {episodeItem.episode}</Td>
               </Tr>
             ))}
           </Tbody>
