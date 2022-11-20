@@ -13,6 +13,7 @@ import {
   ModalCloseButton,
   Button,
 } from "@chakra-ui/react";
+import Link from "next/link";
 
 function CharInfo({ charItem, isOpen, onClose }) {
   const checkStatus = (status) => {
@@ -86,9 +87,9 @@ function CharInfo({ charItem, isOpen, onClose }) {
             fontWeight="500"
             colorScheme="blue"
           >
-            {/* <Link to={`/characters/${charItem.id}`}> */}
+            <Link href={`/characters/${charItem.id}`}>
             Homepage
-            {/* </Link> */}
+            </Link>
           </Button>
           <Button colorScheme="blue" mr={3} onClick={onClose}>
             Close

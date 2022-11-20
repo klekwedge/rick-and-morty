@@ -1,11 +1,10 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useState } from "react";
 // import { Link } from 'react-router-dom';
-import {
-  Flex, Heading, Image, Button,
-} from '@chakra-ui/react';
-import RickAndMortyService from '../../services/RickAndMortyService';
-import Spinner from '../Spinner/Spinner';
-import ErrorMessage from '../ErrorMessage/ErrorMessage';
+import { Flex, Heading, Image, Button } from "@chakra-ui/react";
+import RickAndMortyService from "../../services/RickAndMortyService";
+import Spinner from "../Spinner/Spinner";
+import ErrorMessage from "../ErrorMessage/ErrorMessage";
+import Link from "next/link";
 
 function CharacterTemplate({ character, onRequest }) {
   return (
@@ -27,39 +26,25 @@ function CharacterTemplate({ character, onRequest }) {
         />
         <Flex flexDirection="column" gap="8px">
           <Heading as="h3" fontWeight="500" fontSize="18px">
-            Name:
-            {' '}
-            {character.name}
+            Name: {character.name}
           </Heading>
           <Heading as="h3" fontWeight="400" fontSize="16px">
-            Gender:
-            {' '}
-            {character.gender}
+            Gender: {character.gender}
           </Heading>
           <Heading as="h3" fontWeight="400" fontSize="16px">
-            Species:
-            {' '}
-            {character.species}
+            Species: {character.species}
           </Heading>
           <Heading as="h3" fontWeight="400" fontSize="16px">
-            Status:
-            {' '}
-            {character.status}
+            Status: {character.status}
           </Heading>
           <Heading as="h3" fontWeight="400" fontSize="16px">
-            Location:
-            {' '}
-            {character.location.name}
+            Location: {character.location.name}
           </Heading>
           <Heading as="h3" fontWeight="400" fontSize="16px">
-            Origin:
-            {' '}
-            {character.origin.name}
+            Origin: {character.origin.name}
           </Heading>
           <Heading as="h3" fontWeight="400" fontSize="16px">
-            Episodes:
-            {' '}
-            {character.episode.length}
+            Episodes: {character.episode.length}
           </Heading>
         </Flex>
       </Flex>
@@ -69,16 +54,16 @@ function CharacterTemplate({ character, onRequest }) {
           border="2px solid #FF9800"
           background="inherit"
           transition="all 0.4s ease"
-          _hover={{ background: '#FF9800' }}
+          _hover={{ background: "#FF9800" }}
         >
-          {/* <Link to={`/characters/${character.id}`}>HomePage</Link> */}
+          <Link href={`/characters/${character.id}`}>HomePage</Link>
         </Button>
         <Button
           alignSelf="flex-end"
           border="2px solid #FF9800"
           background="inherit"
           transition="all 0.4s ease"
-          _hover={{ background: '#FF9800' }}
+          _hover={{ background: "#FF9800" }}
           onClick={onRequest}
         >
           Random char
@@ -106,7 +91,10 @@ function RandomChar() {
   };
   const onRequest = () => {
     const charId = Math.floor(Math.random() * (826 - 1) + 1);
-    rickAndMortyService.getCharacter(charId).then(onCharacterLoaded).catch(onError);
+    rickAndMortyService
+      .getCharacter(charId)
+      .then(onCharacterLoaded)
+      .catch(onError);
   };
 
   useEffect(() => {
