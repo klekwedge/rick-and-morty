@@ -6,16 +6,16 @@ import ErrorMessage from "../../components/ErrorMessage/ErrorMessage";
 import Link from "next/link";
 
 function LocationPage() {
-  const [charList, setCharList] = useState([]);
+  const [locationsList, setLocationsList] = useState([]);
   const [currentLocationPage, setCurrentLocationPage] = useState(1);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
 
   const rickAndMortyService = new RickAndMortyService();
 
-  const onLocationListLoaded = (newCharList) => {
+  const onLocationListLoaded = (newLocationsList) => {
     setLoading(false);
-    setCharList((charItems) => [...charItems, ...newCharList]);
+    setLocationsList([...locationsList, ...newLocationsList]);
   };
 
   const onError = () => {
@@ -38,7 +38,7 @@ function LocationPage() {
   const errorMessage = error ? <ErrorMessage /> : null;
   const content = !(loading || error) ? (
     <List display="flex" gap="20px" flexWrap="wrap">
-      {charList.map((item) => (
+      {locationsList.map((item) => (
         <ListItem
           key={item.id}
           display="flex"

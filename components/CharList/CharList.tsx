@@ -43,12 +43,10 @@ function CharList({ onCharSelected, onCharFavorite, onOpen }: any) {
   const rickAndMortyService = new RickAndMortyService();
 
   const onCharListLoaded = (newCharList) => {
-    console.log('test!');
     setLoading(false);
     setCharList([...charList, ...newCharList]);
   };
 
-  console.log(currentCharPage);
   const onError = () => {
     setError(true);
     setLoading(false);

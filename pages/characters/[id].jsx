@@ -29,8 +29,8 @@ function SingleCharacter() {
 
   const rickAndMortyService = new RickAndMortyService();
 
-  const onEpisodeLoaded = (newData) => {
-    setEpisodeList((episodeItems) => [...episodeItems, newData]);
+  const onEpisodeLoaded = (newEpisodeList) => {
+    setEpisodeList([...episodeList, ...newEpisodeList]);
   };
 
   const onError = () => {
@@ -55,7 +55,9 @@ function SingleCharacter() {
   };
 
   useEffect(() => {
-    updateData();
+    if (id) {
+      updateData();
+    }
   }, [id]);
 
   const errorMessage = error ? <ErrorMessage /> : null;

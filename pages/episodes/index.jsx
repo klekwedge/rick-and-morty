@@ -6,16 +6,16 @@ import ErrorMessage from "../../components/ErrorMessage/ErrorMessage";
 import Link from "next/link";
 
 function EpisodesPage() {
-  const [charList, setCharList] = useState([]);
+  const [episodesList, setEpisodesList] = useState([]);
   const [currentEpisodePage, setCurrentEpisodePage] = useState(1);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
 
   const rickAndMortyService = new RickAndMortyService();
 
-  const onEpisodeListLoaded = (newCharList) => {
+  const onEpisodeListLoaded = (newEpisodesList) => {
     setLoading(false);
-    setCharList((charItems) => [...charItems, ...newCharList]);
+    setEpisodesList([...episodesList, ...newEpisodesList]);
   };
 
   const onError = () => {
@@ -39,7 +39,7 @@ function EpisodesPage() {
   const errorMessage = error ? <ErrorMessage /> : null;
   const content = !(loading || error) ? (
     <List display="flex" gap="20px" flexWrap="wrap">
-      {charList.map((item) => (
+      {episodesList.map((item) => (
         <ListItem
           key={item.id}
           display="flex"

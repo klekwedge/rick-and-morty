@@ -18,8 +18,8 @@ function SingleEpisode() {
 
   const rickAndMortyService = new RickAndMortyService();
 
-  const onCharacterLoaded = (newData) => {
-    setCharacterList((characterItems) => [...characterItems, newData]);
+  const onCharacterLoaded = (newCharacterList) => {
+    setCharacterList([...characterList, ...newCharacterList]);
   };
 
   const onError = () => {
@@ -28,6 +28,7 @@ function SingleEpisode() {
   };
 
   const updateCharacters = (characters) => {
+    // console.log(characters);
     characters.map((characterUrl) =>
       rickAndMortyService
         .getData(characterUrl)
@@ -47,7 +48,9 @@ function SingleEpisode() {
   };
 
   useEffect(() => {
-    updateData();
+    if (id) {
+      updateData();
+    }
   }, [id]);
 
   const errorMessage = error ? <ErrorMessage /> : null;

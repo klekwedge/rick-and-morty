@@ -17,8 +17,8 @@ function SingleLocation() {
 
   const rickAndMortyService = new RickAndMortyService();
 
-  const onResidentsLoaded = (newData) => {
-    setResidentList((residentItems) => [...residentItems, newData]);
+  const onResidentsLoaded = (newResidentList) => {
+    setResidentList([...residentList, ...newResidentList]);
   };
 
   const onError = () => {
@@ -27,6 +27,7 @@ function SingleLocation() {
   };
 
   const updateResidents = (residents) => {
+    // console.log(residents);
     residents.map((url) =>
       rickAndMortyService.getData(url).then(onResidentsLoaded).catch(onError)
     );
@@ -43,7 +44,9 @@ function SingleLocation() {
   };
 
   useEffect(() => {
-    updateData();
+    if (id) {
+      updateData();
+    }
   }, [id]);
 
   const errorMessage = error ? <ErrorMessage /> : null;
