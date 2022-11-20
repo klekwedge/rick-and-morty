@@ -43,10 +43,12 @@ function CharList({ onCharSelected, onCharFavorite, onOpen }: any) {
   const rickAndMortyService = new RickAndMortyService();
 
   const onCharListLoaded = (newCharList) => {
+    console.log('test!');
     setLoading(false);
-    setCharList((charItems) => [...charItems, ...newCharList]);
+    setCharList([...charList, ...newCharList]);
   };
 
+  console.log(currentCharPage);
   const onError = () => {
     setError(true);
     setLoading(false);
@@ -66,7 +68,7 @@ function CharList({ onCharSelected, onCharFavorite, onOpen }: any) {
   const content = !(loading || error)
     ? charList.map((item, i) => (
       <ListItem
-        tabIndex="0"
+        // tabIndex="0"
         key={item.id}
         ref={(el) => (charRefs.current[i] = el)}
         display="flex"

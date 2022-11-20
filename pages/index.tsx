@@ -1,25 +1,31 @@
-import React, { useState } from 'react';
+import React, { useState } from "react";
 import {
-  Flex, Tabs, TabList, TabPanels, Tab, TabPanel, useDisclosure,
-} from '@chakra-ui/react';
-import CharList from '../components/CharList/CharList';
-import CharInfo from '../components/CharInfo/CharInfo';
-import ErrorFuse from '../components/ErrorFuse/ErrorFuse';
-import RandomChar from '../components/RandomChar/RandomChar';
+  Flex,
+  Tabs,
+  TabList,
+  TabPanels,
+  Tab,
+  TabPanel,
+  useDisclosure,
+} from "@chakra-ui/react";
+import CharList from "../components/CharList/CharList";
+import CharInfo from "../components/CharInfo/CharInfo";
+import ErrorFuse from "../components/ErrorFuse/ErrorFuse";
+import RandomChar from "../components/RandomChar/RandomChar";
 // import FavoriteCharList from '../components/FavoriteCharList/FavoriteCharList';
 
 function MainPage() {
   const [selectedChar, setSelectedChar] = useState(null);
-  const [favoriteCharList, setFavoriteCharList] = useState([]);
+  // const [favoriteCharList, setFavoriteCharList] = useState([]);
   const { isOpen, onOpen, onClose } = useDisclosure();
 
-  const onCharFavorite = (char: any, option: any) => {
-    if (option === 'add') {
-      setFavoriteCharList([...favoriteCharList, char]);
-    } else {
-      setFavoriteCharList([...favoriteCharList.filter((charItem) => charItem !== char)]);
-    }
-  };
+  // const onCharFavorite = (char: any, option: any) => {
+  //   if (option === 'add') {
+  //     setFavoriteCharList([...favoriteCharList, char]);
+  //   } else {
+  //     setFavoriteCharList([...favoriteCharList.filter((charItem) => charItem !== char)]);
+  //   }
+  // };
 
   const onCharSelected = (charItem: any) => {
     setSelectedChar(charItem);
@@ -38,15 +44,15 @@ function MainPage() {
           </TabList>
           <TabPanels width="100%">
             <TabPanel>
-              {/* <ErrorFuse> */}
+              <ErrorFuse>
                 <CharList
                   onCharSelected={onCharSelected}
-                  onCharFavorite={onCharFavorite}
+                  // onCharFavorite={onCharFavorite}
                   onOpen={onOpen}
                 />
-              {/* </ErrorFuse> */}
+              </ErrorFuse>
             </TabPanel>
-            <TabPanel flexGrow="1">
+            <TabPanel>
               {/* <ErrorFuse>
                 <FavoriteCharList
                   onCharSelected={onCharSelected}

@@ -71,7 +71,7 @@ function LocationPage() {
           >
             <Link href={`/locations/${item.id}`}>
             Homepage
-            </Lin>
+            </Link>
           </Heading>
         </ListItem>
       ))}
