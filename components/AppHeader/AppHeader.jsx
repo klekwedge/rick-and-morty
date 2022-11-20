@@ -1,49 +1,48 @@
 import React from 'react';
-import { Link, NavLink } from 'react-router-dom';
 import { Flex, List, Heading } from '@chakra-ui/react';
-import './AppHeader.scss';
+import './AppHeader.module.scss';
 
 function AppHeader() {
   return (
     <Flex as="header" display="flex" alignItems="center" justifyContent="space-between" p="10px">
       <Heading as="h1" fontSize="30px" color="#FF9800">
-        <Link to="/" className="effect-1">
+        {/* <Link to="/" className="effect-1"> */}
           Rick and Morty Info
-        </Link>
+        {/* </Link> */}
       </Heading>
       <Flex as="nav">
         <List display="flex" gap="10px" fontSize="18px" className="nav-links">
           <li>
-            <NavLink
+            {/* <NavLink
               to="/"
               style={({ isActive }) => ({
                 fontWeight: isActive ? '700' : '400',
               })}
-            >
+            > */}
               Characters
-            </NavLink>
+            {/* </NavLink> */}
           </li>
           <li>
-            <NavLink
+            {/* <NavLink
               className="test"
               to="/locations"
               style={({ isActive }) => ({
                 fontWeight: isActive ? '700' : '400',
               })}
-            >
+            > */}
               Locations
-            </NavLink>
+            {/* </NavLink> */}
           </li>
           <li>
-            <NavLink
+            {/* <NavLink
               to="/episodes"
               style={({ isActive }) => ({
                 fontWeight: isActive ? '700' : '400',
                 class: isActive ? 'active' : 'effect-3',
               })}
-            >
+            > */}
               Episodes
-            </NavLink>
+            {/* </NavLink> */}
           </li>
           {/* <li>
             <NavLink

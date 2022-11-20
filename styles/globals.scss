@@ -25,7 +25,6 @@ a {
   }
 }
 
-
 /*  */
 /*  */
 /*  */
@@ -34,4 +33,16 @@ h2,
 h3,
 h4 span {
   font-weight: 400;
+}
+
+header a {
+  position: relative;
+  color: inherit;
+  text-decoration: none;
+  &:before,
+  &:after {
+    content: "";
+    position: absolute;
+    transition: transform 0.5s ease;
+  }
 }
