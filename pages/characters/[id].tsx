@@ -16,21 +16,25 @@ import {
 import ErrorMessage from "../../components/ErrorMessage/ErrorMessage";
 import Spinner from "../../components/Spinner/Spinner";
 import RickAndMortyService from "../../services/RickAndMortyService";
+import { ICharacter } from "../../types/character.types";
+import { IEpisode } from "../../types/episode.types";
+
 
 function SingleCharacter() {
   const router = useRouter();
   const { id } = router.query;
 
-  const [data, setData] = useState(null);
-  const [episodeList, setEpisodeList] = useState([]);
+  const [character, setCharacter] =useState<ICharacter>()
+  const [episodeList, setEpisodeList] = useState<IEpisode[]>([]);
+
 
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
 
   const rickAndMortyService = new RickAndMortyService();
 
-  const onEpisodeLoaded = (newEpisodeList) => {
-    setEpisodeList([...episodeList, ...newEpisodeList]);
+  const onEpisodeLoaded = (newEpisode: IEpisode) => {
+    setEpisodeList([...episodeList, newEpisode]);
   };
 
   const onError = () => {
@@ -38,16 +42,16 @@ function SingleCharacter() {
     setLoading(false);
   };
 
-  const updateEpisodes = (episodes) => {
+  const updateEpisodes = (episodes: string[]) => {
     episodes.map((url) =>
       rickAndMortyService.getData(url).then(onEpisodeLoaded).catch(onError)
     );
   };
 
-  const onDataLoaded = (newData) => {
-    setData(newData);
+  const onDataLoaded = (character: ICharacter) => {
+    setCharacter(character);
     setLoading(false);
-    updateEpisodes(newData.episode);
+    updateEpisodes(character.episode);
   };
 
   const updateData = () => {
@@ -63,37 +67,37 @@ function SingleCharacter() {
   const errorMessage = error ? <ErrorMessage /> : null;
   const spinner = loading ? <Spinner /> : null;
 
-  const content = !(loading || error || !data) ? (
+  const content = !(loading || error || !character) ? (
     <Box pb="50px">
       <Flex gap="40px" mb="20px">
         <Image
-          src={data.image}
-          alt={data.name}
+          src={character.image}
+          alt={character.name}
           borderRadius="5px"
-          title={data.name}
+          title={character.name}
         />
         <Flex flexDirection="column" gap="5px">
           <Heading as="h3" fontWeight="500" fontSize="20px">
-            Name: {data.name}
+            Name: {character.name}
           </Heading>
           <h3>
             Gender:
-            {data.gender}
+            {character.gender}
           </h3>
           <h3>
             Species:
-            {data.species}
+            {character.species}
           </h3>
           <h3>
             Status:
-            {data.status}
+            {character.status}
           </h3>
           <h3>
             Location:
-            {data.location.name}
+            {character.location.name}
           </h3>{" "}
           <Heading as="h3" fontWeight="400" fontSize="16px" mb="10px">
-            Origin: {data.origin.name}
+            Origin: {character.origin.name}
           </Heading>
         </Flex>
       </Flex>
