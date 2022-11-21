@@ -101,10 +101,6 @@ function CustomHead() {
         />
         <title>Rick and Morty</title>
       </Head>
-      <Head>
-        <meta property="og:title" content="My new title" key="title" />
-      </Head>
-      <p>Hello world!</p>
     </div>
   );
 }

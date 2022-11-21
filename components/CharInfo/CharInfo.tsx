@@ -14,17 +14,16 @@ import {
   Button,
 } from "@chakra-ui/react";
 import Link from "next/link";
+import { ICharacter } from "../../types/character.types";
 
 interface CharInfoProps {
-  charItem: ICha
+  charItem: ICharacter | undefined;
+  isOpen: boolean;
+  onClose: () => void;
 }
 
-function CharInfo({ charItem, isOpen, onClose }) {
-  // console.log('charItem',charItem);
-  // console.log(isOpen);
-  // console.log(onClose);
-
-  const checkStatus = (status) => {
+function CharInfo({ charItem, isOpen, onClose }: CharInfoProps) {
+  const checkStatus = (status: string) => {
     switch (status) {
       case "Alive":
         return "#55CC44";
@@ -54,7 +53,7 @@ function CharInfo({ charItem, isOpen, onClose }) {
           <Flex gap="5px" flexDirection="column">
             <Flex alignItems="center" gap="5px">
               <Box
-                background={() => checkStatus(charItem.status)}
+                background={checkStatus(charItem.status)}
                 width="10px"
                 height="10px"
                 borderRadius="50%"
