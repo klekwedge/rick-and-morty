@@ -4,21 +4,23 @@ import ErrorMessage from "../../components/ErrorMessage/ErrorMessage";
 import Spinner from "../../components/Spinner/Spinner";
 import RickAndMortyService from "../../services/RickAndMortyService";
 import { useRouter } from "next/router";
+import { ILocation } from "../../types/location.types";
+import { ICharacter } from "../../types/character.types";
 
 function SingleLocation() {
   const router = useRouter();
   const { id } = router.query;
 
-  const [data, setData] = useState(null);
-  const [residentList, setResidentList] = useState([]);
+  const [location, setLocation] = useState<ILocation>();
+  const [residentList, setResidentList] = useState<ICharacter[]>([]);
 
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
 
   const rickAndMortyService = new RickAndMortyService();
 
-  const onResidentsLoaded = (newResidentList) => {
-    setResidentList([...residentList, ...newResidentList]);
+  const onResidentsLoaded = (newResident: ICharacter) => {
+    setResidentList([...residentList, newResident]);
   };
 
   const onError = () => {
@@ -26,21 +28,22 @@ function SingleLocation() {
     setLoading(false);
   };
 
-  const updateResidents = (residents) => {
-    // console.log(residents);
+  const updateResidents = (residents: string[]) => {
     residents.map((url) =>
       rickAndMortyService.getData(url).then(onResidentsLoaded).catch(onError)
     );
   };
 
-  const onDataLoaded = (newData) => {
-    setData(newData);
+  const onDataLoaded = (location: ILocation) => {
+    setLocation(location);
     setLoading(false);
-    updateResidents(newData.residents);
+    updateResidents(location.residents);
   };
 
   const updateData = () => {
-    rickAndMortyService.getLocation(id).then(onDataLoaded);
+    if (typeof id === "string") {
+      rickAndMortyService.getLocation(id).then(onDataLoaded);
+    }
   };
 
   useEffect(() => {
@@ -52,20 +55,20 @@ function SingleLocation() {
   const errorMessage = error ? <ErrorMessage /> : null;
   const spinner = loading ? <Spinner /> : null;
 
-  const content = !(loading || error || !data) ? (
+  const content = !(loading || error || !location) ? (
     <div>
       <Flex gap="40px" mb="20px">
         <Flex flexDirection="column" gap="5px">
           <Heading as="h3" fontWeight="500" fontSize="20px">
-            Name: {data.name}
+            Name: {location.name}
           </Heading>
           <h3>
             Type:
-            {data.type}
+            {location.type}
           </h3>
           <h3>
             Dimension:
-            {data.dimension}
+            {location.dimension}
           </h3>
         </Flex>
       </Flex>
@@ -77,7 +80,7 @@ function SingleLocation() {
       <List display="flex" gap="20px" flexWrap="wrap" pb="50px">
         {residentList.map((residentItem) => (
           <ListItem
-            tabIndex="0"
+            tabIndex={0}
             key={residentItem.id}
             display="flex"
             flexDirection="column"
