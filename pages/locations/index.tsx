@@ -4,16 +4,17 @@ import RickAndMortyService from "../../services/RickAndMortyService";
 import Spinner from "../../components/Spinner/Spinner";
 import ErrorMessage from "../../components/ErrorMessage/ErrorMessage";
 import Link from "next/link";
+import { ILocation } from "../../types/location.types";
 
 function LocationPage() {
-  const [locationsList, setLocationsList] = useState([]);
+  const [locationsList, setLocationsList] = useState<ILocation[]>([]);
   const [currentLocationPage, setCurrentLocationPage] = useState(1);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
 
   const rickAndMortyService = new RickAndMortyService();
 
-  const onLocationListLoaded = (newLocationsList) => {
+  const onLocationListLoaded = (newLocationsList: ILocation[]) => {
     setLoading(false);
     setLocationsList([...locationsList, ...newLocationsList]);
   };
@@ -22,7 +23,8 @@ function LocationPage() {
     setError(true);
     setLoading(false);
   };
-  const onRequest = (page) => {
+
+  const onRequest = (page: number) => {
     rickAndMortyService
       .getAllLocations(page)
       .then(onLocationListLoaded)
@@ -69,9 +71,7 @@ function LocationPage() {
             transition="all 0.3s ease"
             _hover={{ color: "#FF9800" }}
           >
-            <Link href={`/locations/${item.id}`}>
-            Homepage
-            </Link>
+            <Link href={`/locations/${item.id}`}>Homepage</Link>
           </Heading>
         </ListItem>
       ))}
