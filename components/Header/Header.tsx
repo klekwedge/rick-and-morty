@@ -25,7 +25,7 @@ function AppHeader() {
           <li>
             <Link
               href="/"
-              style={pathname === "/" ? { fontWeight: "700" } : null}
+              style={pathname === "/" ? { fontWeight: "700" } : {}}
             >
               Characters
             </Link>
@@ -33,7 +33,7 @@ function AppHeader() {
           <li>
             <Link
               href="/locations"
-              style={pathname === "/locations" ? { fontWeight: "700" } : null}
+              style={pathname === "/locations" ? { fontWeight: "700" } : {}}
             >
               Locations
             </Link>
@@ -41,7 +41,7 @@ function AppHeader() {
           <li>
             <Link
               href="/episodes"
-              style={pathname === "/episodes" ? { fontWeight: "700" } : null}
+              style={pathname === "/episodes" ? { fontWeight: "700" } : {}}
             >
               Episodes
             </Link>

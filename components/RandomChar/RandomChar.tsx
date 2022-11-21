@@ -5,8 +5,18 @@ import RickAndMortyService from "../../services/RickAndMortyService";
 import Spinner from "../Spinner/Spinner";
 import ErrorMessage from "../ErrorMessage/ErrorMessage";
 import Link from "next/link";
+import { ICharacter } from "../../types/character.types";
 
-function CharacterTemplate({ character, onRequest }) {
+interface CharacterTemplateProps {
+  character: ICharacter | undefined;
+  onRequest: () => void;
+}
+
+function CharacterTemplate({ character, onRequest }: CharacterTemplateProps) {
+  if (!character) {
+    return <></>;
+  }
+
   return (
     <Flex
       justifyContent="space-between"
@@ -74,14 +84,14 @@ function CharacterTemplate({ character, onRequest }) {
 }
 
 function RandomChar() {
-  const [currentChar, setCurrentChar] = useState(null);
+  const [currentChar, setCurrentChar] = useState<ICharacter>();
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
 
   const rickAndMortyService = new RickAndMortyService();
 
-  const onCharacterLoaded = (data) => {
-    setCurrentChar(data);
+  const onCharacterLoaded = (character: ICharacter) => {
+    setCurrentChar(character);
     setLoading(false);
   };
 

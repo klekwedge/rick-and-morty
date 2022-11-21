@@ -8,7 +8,7 @@ class RickAndMortyService {
     return data.results;
   };
 
-  getCharacter = async (charId: string) => {
+  getCharacter = async (charId: string | number) => {
     const res = await fetch(`${this.apiBase}/character/${charId}`);
     const data = await res.json();
     return data;
