@@ -15,13 +15,13 @@ function CharList({ onCharSelected, onCharFavorite, onOpen }: any) {
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
 
-  // const charRefs = useRef<HTMLLIElement[]>([]);
+  const charRefs = useRef<HTMLLIElement[]>([]);
 
-  // const focusOnItem = (id: number) => {
-  //   charRefs.current.forEach((myRef) => myRef.classList.remove('_active'));
-  //   charRefs.current[id].classList.add('_active');
-  //   charRefs.current[id].focus();
-  // };
+  const focusOnItem = (id: number) => {
+    charRefs.current.forEach((myRef) => myRef.classList.remove("_active"));
+    charRefs.current[id].classList.add("_active");
+    charRefs.current[id].focus();
+  };
 
   // const addCharToFavorite = (e, item, index) => {
   //   if (
@@ -68,9 +68,13 @@ function CharList({ onCharSelected, onCharFavorite, onOpen }: any) {
   const content = !(loading || error)
     ? charList.map((item, i) => (
         <ListItem
-          // tabIndex="0"
+          tabIndex={0}
           key={item.id}
-          // ref={(el) => (charRefs.current[i] = el)}
+          ref={(el) => {
+            if (el) {
+              charRefs.current[i] = el;
+            }
+          }}
           display="flex"
           flexDirection="column"
           alignItems="center"
@@ -83,15 +87,17 @@ function CharList({ onCharSelected, onCharFavorite, onOpen }: any) {
           cursor="pointer"
           position="relative"
           borderRadius="5px"
-          // onClick={(e) => {
-          //   addCharToFavorite(e, item, i, item.id);
-          // }}
-          // onKeyPress={(e) => {
-          //   if (e.key === ' ' || e.key === 'Enter') {
-          //     onCharSelected(item);
-          //     focusOnItem(i);
-          //   }
-          // }}
+          onClick={() => {
+            // addCharToFavorite(e, item, i, item.id);
+            onCharSelected(item);
+            focusOnItem(i);
+          }}
+          onKeyPress={(e) => {
+            if (e.key === " " || e.key === "Enter") {
+              onCharSelected(item);
+              focusOnItem(i);
+            }
+          }}
           transition="all .3s ease-in-out"
           _hover={{ transform: "scale(1.05)" }}
         >

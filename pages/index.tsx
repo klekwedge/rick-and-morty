@@ -12,10 +12,11 @@ import CharList from "../components/CharList/CharList";
 import CharInfo from "../components/CharInfo/CharInfo";
 import ErrorFuse from "../components/ErrorFuse/ErrorFuse";
 import RandomChar from "../components/RandomChar/RandomChar";
+import { ICharacter } from "../types/character.types";
 // import FavoriteCharList from '../components/FavoriteCharList/FavoriteCharList';
 
 function MainPage() {
-  const [selectedChar, setSelectedChar] = useState(null);
+  const [selectedChar, setSelectedChar] = useState<ICharacter>();
   // const [favoriteCharList, setFavoriteCharList] = useState([]);
   const { isOpen, onOpen, onClose } = useDisclosure();
 
@@ -29,6 +30,7 @@ function MainPage() {
 
   const onCharSelected = (charItem: any) => {
     setSelectedChar(charItem);
+    onOpen();
   };
 
   return (

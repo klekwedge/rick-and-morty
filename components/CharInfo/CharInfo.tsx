@@ -15,7 +15,15 @@ import {
 } from "@chakra-ui/react";
 import Link from "next/link";
 
+interface CharInfoProps {
+  charItem: ICha
+}
+
 function CharInfo({ charItem, isOpen, onClose }) {
+  // console.log('charItem',charItem);
+  // console.log(isOpen);
+  // console.log(onClose);
+
   const checkStatus = (status) => {
     switch (status) {
       case "Alive":
@@ -87,9 +95,7 @@ function CharInfo({ charItem, isOpen, onClose }) {
             fontWeight="500"
             colorScheme="blue"
           >
-            <Link href={`/characters/${charItem.id}`}>
-            Homepage
-            </Link>
+            <Link href={`/characters/${charItem.id}`}>Homepage</Link>
           </Button>
           <Button colorScheme="blue" mr={3} onClick={onClose}>
             Close
