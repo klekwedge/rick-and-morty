@@ -1,11 +1,8 @@
-/* eslint-disable no-return-assign */
 import React, { useState, useEffect, useRef } from "react";
 import { Flex, List, ListItem, Image, Heading, Button } from "@chakra-ui/react";
 import RickAndMortyService from "../../services/RickAndMortyService";
 import Spinner from "../Spinner/Spinner";
 import ErrorMessage from "../ErrorMessage/ErrorMessage";
-// import LikeButton from '../LikeButton/LikeButton';
-// import CharSearchForm from '../CharSearchForm/CharSearchForm';
 import "./CharList.module.scss";
 import { ICharacter } from "../../types/character.types";
 
@@ -14,7 +11,6 @@ interface CharListProps {
 }
 
 function CharList({ onCharSelected }: CharListProps) {
-
   const [charList, setCharList] = useState<ICharacter[]>([]);
   const [currentCharPage, setCurrentCharPage] = useState(1);
   const [loading, setLoading] = useState(true);
@@ -27,22 +23,6 @@ function CharList({ onCharSelected }: CharListProps) {
     charRefs.current[id].classList.add("_active");
     charRefs.current[id].focus();
   };
-
-  // const addCharToFavorite = (e, item, index) => {
-  //   if (
-  //     e.target.tagName === 'svg'
-  //     || e.target.tagName === 'INPUT'
-  //     || e.target.tagName === 'circle'
-  //     || e.target.tagName === 'path'
-  //   ) {
-  //     const option = e.currentTarget.childNodes[2].childNodes[0].checked ? 'add' : 'delete';
-  //     onCharFavorite(item, option);
-  //   } else {
-  //     focusOnItem(index);
-  //     onCharSelected(item);
-  //     onOpen();
-  //   }
-  // };
 
   const rickAndMortyService = new RickAndMortyService();
 
@@ -93,7 +73,6 @@ function CharList({ onCharSelected }: CharListProps) {
           position="relative"
           borderRadius="5px"
           onClick={() => {
-            // addCharToFavorite(e, item, i, item.id);
             onCharSelected(item);
             focusOnItem(i);
           }}
@@ -110,16 +89,6 @@ function CharList({ onCharSelected }: CharListProps) {
           <Heading as="h2" fontSize="20px" textAlign="center">
             {item.name}
           </Heading>
-          <Button
-            position="absolute"
-            top="-7px"
-            right="-20px"
-            background="transparent"
-            _active={{ bacground: "transparent" }}
-            _hover={{ bacground: "transparent" }}
-          >
-            {/* <LikeButton itemId={item.id} /> */}
-          </Button>
         </ListItem>
       ))
     : null;

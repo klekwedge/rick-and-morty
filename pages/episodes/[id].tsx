@@ -1,4 +1,3 @@
-/* eslint-disable max-len */
 import React, { useState, useEffect } from "react";
 import { Heading, ListItem, List, Flex, Image } from "@chakra-ui/react";
 import ErrorMessage from "../../components/ErrorMessage/ErrorMessage";

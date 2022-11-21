@@ -1,5 +1,3 @@
-/* eslint-disable react/destructuring-assignment */
-/* eslint-disable react/state-in-constructor */
 import React, { Component } from 'react';
 import ErrorMessage from '../ErrorMessage/ErrorMessage';
 

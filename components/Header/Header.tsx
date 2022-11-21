@@ -46,17 +46,6 @@ function AppHeader() {
               Episodes
             </Link>
           </li>
-          <li>
-            {/* <Link
-              href="/favorites"
-              // style={({ isActive }) => ({
-              //   fontWeight: isActive ? "700" : "400",
-              //   class: isActive ? "active" : "effect-3",
-              // })}
-            >
-              Favorites
-            </Link> */}
-          </li>
         </List>
       </Flex>
     </Flex>

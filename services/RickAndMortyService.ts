@@ -1,4 +1,3 @@
-/* eslint-disable class-methods-use-this */
 class RickAndMortyService {
   apiBase = 'https://rickandmortyapi.com/api';
 

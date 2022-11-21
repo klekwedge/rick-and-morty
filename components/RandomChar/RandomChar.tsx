@@ -1,5 +1,4 @@
 import React, { useEffect, useState } from "react";
-// import { Link } from 'react-router-dom';
 import { Flex, Heading, Image, Button } from "@chakra-ui/react";
 import RickAndMortyService from "../../services/RickAndMortyService";
 import Spinner from "../Spinner/Spinner";
@@ -33,7 +32,6 @@ function RandomChar() {
   };
 
   useEffect(() => {
-    console.log("/");
     onRequest();
   }, []);
 
