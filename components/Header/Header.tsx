@@ -1,6 +1,6 @@
 import React from "react";
 import { Flex, List, Heading } from "@chakra-ui/react";
-import "./Header.module.scss";
+import styles from "./Header.module.scss";
 import Link from "next/link";
 import { useRouter } from "next/router";
 
@@ -16,12 +16,12 @@ function AppHeader() {
       p="10px"
     >
       <Heading as="h1" fontSize="30px" color="#FF9800">
-        <Link href="/" className="effect-1">
+        <Link href="/" className={styles.effect}>
           Rick and Morty Info
         </Link>
       </Heading>
       <Flex as="nav">
-        <List display="flex" gap="10px" fontSize="18px" className="nav-links">
+        <List display="flex" gap="10px" fontSize="18px" className={styles.navLinks}>
           <li>
             <Link
               href="/"

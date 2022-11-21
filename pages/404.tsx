@@ -1,14 +1,13 @@
 import { Link } from "@chakra-ui/react";
 import React from "react";
-
-import '../styles/Page404.module.scss'
+import styles from "./../styles/404.module.scss";
 
 function Page404() {
   return (
-    <div className="background-img">
-      <div className="space" />
-      <div className="wrapper">
-        <div className="img-wrapper">
+    <div className={styles.backgrounImg}>
+      <div className={styles.space} />
+      <div className={styles.wrapper}>
+        <div className={styles.imgWrapper}>
           <span>44</span>
         </div>
         <p>
@@ -16,9 +15,7 @@ function Page404() {
           <br />
           moved to another universe.
         </p>
-        <Link href="/">
-        GET ME HOME
-        </Link>
+        <Link href="/">GET ME HOME</Link>
       </div>
     </div>
   );

@@ -1,6 +1,6 @@
 $hover: #ff9800;
 
-a.effect-1 {
+a.effect {
   &:before {
     left: 0;
     bottom: -5px;
@@ -14,7 +14,7 @@ a.effect-1 {
   }
 }
 
-.nav-links a {
+.navLinks a {
   display: inline-block;
   overflow: hidden;
   &:before {

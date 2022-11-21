@@ -3,7 +3,7 @@ import { Flex, List, ListItem, Image, Heading, Button } from "@chakra-ui/react";
 import RickAndMortyService from "../../services/RickAndMortyService";
 import Spinner from "../Spinner/Spinner";
 import ErrorMessage from "../ErrorMessage/ErrorMessage";
-import "./CharList.module.scss";
+import styles from "./CharList.module.scss";
 import { ICharacter } from "../../types/character.types";
 
 interface CharListProps {
