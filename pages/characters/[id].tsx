@@ -19,14 +19,12 @@ import RickAndMortyService from "../../services/RickAndMortyService";
 import { ICharacter } from "../../types/character.types";
 import { IEpisode } from "../../types/episode.types";
 
-
 function SingleCharacter() {
   const router = useRouter();
   const { id } = router.query;
 
-  const [character, setCharacter] =useState<ICharacter>()
+  const [character, setCharacter] = useState<ICharacter>();
   const [episodeList, setEpisodeList] = useState<IEpisode[]>([]);
-
 
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
@@ -55,7 +53,9 @@ function SingleCharacter() {
   };
 
   const updateData = () => {
-    rickAndMortyService.getCharacter(id).then(onDataLoaded);
+    if (typeof id === "string") {
+      rickAndMortyService.getCharacter(id).then(onDataLoaded);
+    }
   };
 
   useEffect(() => {
