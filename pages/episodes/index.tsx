@@ -4,16 +4,17 @@ import RickAndMortyService from "../../services/RickAndMortyService";
 import Spinner from "../../components/Spinner/Spinner";
 import ErrorMessage from "../../components/ErrorMessage/ErrorMessage";
 import Link from "next/link";
+import { IEpisode } from "../../types/episode.types";
 
 function EpisodesPage() {
-  const [episodesList, setEpisodesList] = useState([]);
+  const [episodesList, setEpisodesList] = useState<IEpisode[]>([]);
   const [currentEpisodePage, setCurrentEpisodePage] = useState(1);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
 
   const rickAndMortyService = new RickAndMortyService();
 
-  const onEpisodeListLoaded = (newEpisodesList) => {
+  const onEpisodeListLoaded = (newEpisodesList: IEpisode[]) => {
     setLoading(false);
     setEpisodesList([...episodesList, ...newEpisodesList]);
   };
@@ -23,7 +24,7 @@ function EpisodesPage() {
     setLoading(false);
   };
 
-  const onRequest = (page) => {
+  const onRequest = (page: number) => {
     rickAndMortyService
       .getAllEpisodes(page)
       .then(onEpisodeListLoaded)
