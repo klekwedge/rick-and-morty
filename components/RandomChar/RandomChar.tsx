@@ -7,17 +7,45 @@ import ErrorMessage from "../ErrorMessage/ErrorMessage";
 import Link from "next/link";
 import { ICharacter } from "../../types/character.types";
 
-interface CharacterTemplateProps {
-  character: ICharacter | undefined;
-  onRequest: () => void;
-}
+function RandomChar() {
+  const [char, setChar] = useState<ICharacter>();
+  const [loading, setLoading] = useState(true);
+  const [error, setError] = useState(false);
 
-function CharacterTemplate({ character, onRequest }: CharacterTemplateProps) {
-  if (!character) {
-    return <></>;
+  const rickAndMortyService = new RickAndMortyService();
+
+  const onCharacterLoaded = (character: ICharacter) => {
+    setChar(character);
+    setLoading(false);
+  };
+
+  const onError = () => {
+    setLoading(false);
+    setError(true);
+  };
+
+  const onRequest = () => {
+    const charId = Math.floor(Math.random() * (826 - 1) + 1);
+    rickAndMortyService
+      .getCharacter(charId)
+      .then(onCharacterLoaded)
+      .catch(onError);
+  };
+
+  useEffect(() => {
+    console.log("/");
+    onRequest();
+  }, []);
+
+  if (error) {
+    return <ErrorMessage />;
   }
 
-  return (
+  if (loading) {
+    return <Spinner />;
+  }
+
+  return char ? (
     <Flex
       justifyContent="space-between"
       backgroundColor="#3C3E44"
@@ -27,34 +55,34 @@ function CharacterTemplate({ character, onRequest }: CharacterTemplateProps) {
     >
       <Flex gap="40px">
         <Image
-          src={character.image}
-          alt={character.name}
+          src={char.image}
+          alt={char.name}
           borderRadius="5px"
-          title={character.name}
+          title={char.name}
           maxWidth="200px"
           maxHeight="200px"
         />
         <Flex flexDirection="column" gap="8px">
           <Heading as="h3" fontWeight="500" fontSize="18px">
-            Name: {character.name}
+            Name: {char.name}
           </Heading>
           <Heading as="h3" fontWeight="400" fontSize="16px">
-            Gender: {character.gender}
+            Gender: {char.gender}
           </Heading>
           <Heading as="h3" fontWeight="400" fontSize="16px">
-            Species: {character.species}
+            Species: {char.species}
           </Heading>
           <Heading as="h3" fontWeight="400" fontSize="16px">
-            Status: {character.status}
+            Status: {char.status}
           </Heading>
           <Heading as="h3" fontWeight="400" fontSize="16px">
-            Location: {character.location.name}
+            Location: {char.location.name}
           </Heading>
           <Heading as="h3" fontWeight="400" fontSize="16px">
-            Origin: {character.origin.name}
+            Origin: {char.origin.name}
           </Heading>
           <Heading as="h3" fontWeight="400" fontSize="16px">
-            Episodes: {character.episode.length}
+            Episodes: {char.episode.length}
           </Heading>
         </Flex>
       </Flex>
@@ -66,7 +94,7 @@ function CharacterTemplate({ character, onRequest }: CharacterTemplateProps) {
           transition="all 0.4s ease"
           _hover={{ background: "#FF9800" }}
         >
-          <Link href={`/characters/${character.id}`}>HomePage</Link>
+          <Link href={`/characters/${char.id}`}>HomePage</Link>
         </Button>
         <Button
           alignSelf="flex-end"
@@ -80,50 +108,7 @@ function CharacterTemplate({ character, onRequest }: CharacterTemplateProps) {
         </Button>
       </Flex>
     </Flex>
-  );
-}
-
-function RandomChar() {
-  const [currentChar, setCurrentChar] = useState<ICharacter>();
-  const [loading, setLoading] = useState(true);
-  const [error, setError] = useState(false);
-
-  const rickAndMortyService = new RickAndMortyService();
-
-  const onCharacterLoaded = (character: ICharacter) => {
-    setCurrentChar(character);
-    setLoading(false);
-  };
-
-  const onError = () => {
-    setLoading(false);
-    setError(true);
-  };
-  const onRequest = () => {
-    const charId = Math.floor(Math.random() * (826 - 1) + 1);
-    rickAndMortyService
-      .getCharacter(charId)
-      .then(onCharacterLoaded)
-      .catch(onError);
-  };
-
-  useEffect(() => {
-    onRequest();
-  }, []);
-
-  const errorMessage = error ? <ErrorMessage /> : null;
-  const spinner = loading ? <Spinner /> : null;
-  const content = !(error || loading) ? (
-    <CharacterTemplate character={currentChar} onRequest={onRequest} />
   ) : null;
-
-  return (
-    <>
-      {errorMessage}
-      {spinner}
-      {content}
-    </>
-  );
 }
 
 export default RandomChar;
