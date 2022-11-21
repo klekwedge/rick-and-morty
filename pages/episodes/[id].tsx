@@ -5,21 +5,23 @@ import ErrorMessage from "../../components/ErrorMessage/ErrorMessage";
 import Spinner from "../../components/Spinner/Spinner";
 import RickAndMortyService from "../../services/RickAndMortyService";
 import { useRouter } from "next/router";
+import { ICharacter } from "../../types/character.types";
+import { IEpisode } from "../../types/episode.types";
 
 function SingleEpisode() {
   const router = useRouter();
   const { id } = router.query;
 
-  const [data, setData] = useState(null);
-  const [characterList, setCharacterList] = useState([]);
+  const [episode, setEpisode] = useState<IEpisode>();
+  const [characterList, setCharacterList] = useState<ICharacter[]>([]);
 
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(false);
 
   const rickAndMortyService = new RickAndMortyService();
 
-  const onCharacterLoaded = (newCharacterList) => {
-    setCharacterList([...characterList, ...newCharacterList]);
+  const onCharacterLoaded = (newCharacter: ICharacter) => {
+    setCharacterList([...characterList, newCharacter]);
   };
 
   const onError = () => {
@@ -27,8 +29,7 @@ function SingleEpisode() {
     setLoading(false);
   };
 
-  const updateCharacters = (characters) => {
-    // console.log(characters);
+  const updateCharacters = (characters: string[]) => {
     characters.map((characterUrl) =>
       rickAndMortyService
         .getData(characterUrl)
@@ -37,14 +38,14 @@ function SingleEpisode() {
     );
   };
 
-  const onDataLoaded = (newData) => {
-    setData(newData);
+  const onEpisodeLoaded = (episode: IEpisode) => {
+    setEpisode(episode);
     setLoading(false);
-    updateCharacters(newData.characters);
+    updateCharacters(episode.characters);
   };
 
   const updateData = () => {
-    rickAndMortyService.getEpisode(id).then(onDataLoaded);
+    rickAndMortyService.getEpisode(id).then(onEpisodeLoaded);
   };
 
   useEffect(() => {
@@ -56,20 +57,20 @@ function SingleEpisode() {
   const errorMessage = error ? <ErrorMessage /> : null;
   const spinner = loading ? <Spinner /> : null;
 
-  const content = !(loading || error || !data) ? (
+  const content = !(loading || error || !episode) ? (
     <div>
       <Flex gap="40px" mb="20px">
         <Flex flexDirection="column" gap="5px">
           <Heading as="h3" fontWeight="500" fontSize="20px">
-            Name: {data.name}
+            Name: {episode.name}
           </Heading>
           <h3>
             Air date:
-            {data.air_date}
+            {episode.air_date}
           </h3>
           <h3>
             Episode:
-            {data.episode}
+            {episode.episode}
           </h3>
         </Flex>
       </Flex>
@@ -81,7 +82,7 @@ function SingleEpisode() {
       <List display="flex" gap="20px" flexWrap="wrap" pb="50px">
         {characterList.map((item) => (
           <ListItem
-            tabIndex="0"
+            tabIndex={0}
             key={item.id}
             display="flex"
             flexDirection="column"
