@@ -45,7 +45,9 @@ function SingleEpisode() {
   };
 
   const updateData = () => {
-    rickAndMortyService.getEpisode(id).then(onEpisodeLoaded);
+    if (typeof id === "string") {
+      rickAndMortyService.getEpisode(id).then(onEpisodeLoaded);
+    }
   };
 
   useEffect(() => {
