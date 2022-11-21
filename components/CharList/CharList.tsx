@@ -9,7 +9,12 @@ import ErrorMessage from "../ErrorMessage/ErrorMessage";
 import "./CharList.module.scss";
 import { ICharacter } from "../../types/character.types";
 
-function CharList({ onCharSelected, onCharFavorite, onOpen }: any) {
+interface CharListProps {
+  onCharSelected: (charItem: ICharacter) => void;
+}
+
+function CharList({ onCharSelected }: CharListProps) {
+
   const [charList, setCharList] = useState<ICharacter[]>([]);
   const [currentCharPage, setCurrentCharPage] = useState(1);
   const [loading, setLoading] = useState(true);

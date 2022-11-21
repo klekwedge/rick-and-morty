@@ -15,6 +15,6 @@
     "jsx": "preserve",
     "incremental": true
   },
-  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "components/CharInfo/CharInfo.tsx", "components/CharList/CharList.jsx", "pages/characters/[id].tsx", "pages/404.tsx", "pages/404.tsx"],
+  "include": ["next-env.d.ts", "**/*.ts", "**/*.tsx", "components/CharInfo/CharInfo.tsx", "components/CharList/CharList.jsx", "pages/characters/[id].tsx", "pages/404.tsx", "pages/404.tsx", "components/ErrorFuse/ErrorFuse.jsx", "components/LikeButton/LikeButton.jsx"],
   "exclude": ["node_modules"]
 }

@@ -28,7 +28,7 @@ function MainPage() {
   //   }
   // };
 
-  const onCharSelected = (charItem: any) => {
+  const onCharSelected = (charItem: ICharacter) => {
     setSelectedChar(charItem);
     onOpen();
   };
@@ -38,23 +38,21 @@ function MainPage() {
       <ErrorFuse>
         <RandomChar />
       </ErrorFuse>
-      <Flex gap="50px">
+      {/* <Flex gap="50px">
         <Tabs>
           <TabList>
             <Tab>Char list</Tab>
             <Tab> Favorite char list</Tab>
           </TabList>
           <TabPanels width="100%">
-            <TabPanel>
+            <TabPanel> */}
               <ErrorFuse>
                 <CharList
                   onCharSelected={onCharSelected}
-                  // onCharFavorite={onCharFavorite}
-                  onOpen={onOpen}
                 />
               </ErrorFuse>
-            </TabPanel>
-            <TabPanel>
+            {/* </TabPanel>
+            <TabPanel> */}
               {/* <ErrorFuse>
                 <FavoriteCharList
                   onCharSelected={onCharSelected}
@@ -62,14 +60,14 @@ function MainPage() {
                   onOpen={onOpen}
                 />
               </ErrorFuse> */}
-            </TabPanel>
+            {/* </TabPanel>
           </TabPanels>
-        </Tabs>
+        </Tabs> */}
 
         <ErrorFuse>
           <CharInfo charItem={selectedChar} isOpen={isOpen} onClose={onClose} />
         </ErrorFuse>
-      </Flex>
+      {/* </Flex> */}
     </Flex>
   );
 }

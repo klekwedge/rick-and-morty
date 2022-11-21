@@ -3,6 +3,11 @@ import React from 'react';
 import './LikeButton.module.scss';
 
 function LikeButton({ itemId }) {
+  console.log(itemId);
+
+
+
+
   return (
     <>
       <input className="checkboxHeart" type="checkbox" id={`checkbox-${itemId}`} />
