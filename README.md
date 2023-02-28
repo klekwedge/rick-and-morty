@@ -30,7 +30,7 @@ You can also read this README in [русский](https://github.com/klekwedge/r
 ### Links
 
 - [Solution URL](https://github.com/klekwedge/rick-and-morty)
-- [Live Site URL](klekwedge-rick-and-morty.vercel.app)
+- [Live Site URL](https://klekwedge-rick-and-morty.vercel.app/)
 
 ## My process
 

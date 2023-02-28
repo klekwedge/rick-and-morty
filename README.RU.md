@@ -30,7 +30,7 @@
 ### Ссылки
 
 - [Ссылка на проект](https://github.com/klekwedge/rick-and-morty)
-- [Деплой](klekwedge-rick-and-morty.vercel.app)
+- [Деплой](https://klekwedge-rick-and-morty.vercel.app/)
 
 ## Мой процесс
 
