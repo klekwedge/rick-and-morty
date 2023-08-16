@@ -1,6 +1,6 @@
 # Rick and Morty
 
-**Вы также можете прочитать этот README на [русском](https://github.com/klekwedge/cv/blob/main/README.md)**
+**Вы также можете прочитать этот README на [русском](https://github.com/klekwedge/rick-and-morty/blob/main/README.md)**
 
 ## Table of contents
 
@@ -17,7 +17,7 @@
 
 **To run the project, you need to have [npm](https://nodejs.org/en/) and [git](https://git-scm.com/downloads) installed on your computer**
 
-1. Make a clone of this repository ```git clone https://github.com/klekwedge/todo.git```
+1. Make a clone of this repository ```git clone https://github.com/klekwedge/rick-and-morty.git```
 2. Install all required npm packages with ```npm i```
 3. Run the project with the command ```npm run dev```
 
